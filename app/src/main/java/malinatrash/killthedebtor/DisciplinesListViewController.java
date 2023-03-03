@@ -7,17 +7,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class DisciplinesListViewController extends AppCompatActivity {
     private ListView disciplinesList;
     private TextView teacherName;
     private Teacher teacher;
+    private List<String> disciplines = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,21 +26,26 @@ public class DisciplinesListViewController extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_list_item_1,
-                getDisciplines()
+                disciplines
         );
         disciplinesList.setAdapter(adapter);
     }
-    private List<String> getDisciplines() {
-//        List<Discipline> disciplines = teacher.getDisciplines();
-//        return disciplines.stream().map(Discipline::getTitle).collect(Collectors.toList());
-        return null;
-    }
     private void getTeacher() {
         Bundle arguments = getIntent().getExtras();
-        if(arguments != null){
-            teacher = (Teacher) arguments.getSerializable(Teacher.class.getSimpleName());
-            teacherName = findViewById(R.id.teacherName);
-            teacherName.setText(String.format("%s %s", teacher.getFirstname(), teacher.getLastname()));
+        if(arguments != null) teacher = (Teacher) arguments.getSerializable(Teacher.class.getSimpleName());
+        setTeacherName();
+        parseDisciplines();
+    }
+    private void setTeacherName() {
+        teacherName = findViewById(R.id.teacherName);
+        teacherName.setText(String.format("%s %s", teacher.getFirstname(), teacher.getLastname()));
+    }
+    private void parseDisciplines() {
+        for (Discipline discipline: teacher.getDisciplines()) {
+            disciplines.add(discipline.getTitle());
         }
+//        for (int i = 0; i < 15; i++) {
+//            disciplines.add(String.valueOf(i));
+//        }
     }
 }

@@ -8,40 +8,12 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class LoginViewController extends AppCompatActivity {
     EditText loginField;
     EditText passwordField;
     Button signInButton;
-
-    private Teacher teacher = new Teacher(
-            "arsh",
-            "pas",
-            "Вадим",
-            "Аршинский",
-            new ArrayList<>(Arrays.asList(
-                    new Discipline("ООП"),
-                    new Discipline("Методы анализа данных"),
-                    new Discipline("Операционные системы"),
-                    new Discipline("Моделирование Процессов и систем"),
-                    new Discipline("Анализ бизнес-процессов"),
-                    new Discipline("Основы проектной деятельности"),
-                    new Discipline("Иностранный язык"),
-                    new Discipline("Технологии разработки программных комплексов"),
-                    new Discipline("WEB-Программирование"),
-                    new Discipline("ООП"),
-                    new Discipline("Методы анализа данных"),
-                    new Discipline("Операционные системы"),
-                    new Discipline("Моделирование Процессов и систем"),
-                    new Discipline("Анализ бизнес-процессов"),
-                    new Discipline("Основы проектной деятельности"),
-                    new Discipline("Иностранный язык"),
-                    new Discipline("Технологии разработки программных комплексов"),
-                    new Discipline("WEB-Программирование")
-                    )));
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,23 +28,23 @@ public class LoginViewController extends AppCompatActivity {
         signInButton = findViewById(R.id.signInButton);
     }
     private void signInButtonPressed() {
-        if (!isValidData()) {
+        Teacher teacher = getTeacher();
+        if (teacher == null) {
             showAlertDialog();
             return;
         }
-        navigateToDisciplinesList();
+        navigateToDisciplinesList(teacher);
     }
-    private void sendTeacher(Intent intent) {
+    private void sendTeacher(Intent intent, Teacher teacher) {
         intent.putExtra(Teacher.class.getSimpleName(), teacher);
     }
-    private void navigateToDisciplinesList() {
+    private void navigateToDisciplinesList(Teacher teacher) {
         Intent intent = new Intent(this, DisciplinesListViewController.class);
-        sendTeacher(intent);
+        sendTeacher(intent, teacher);
         startActivity(intent);
     }
-    private boolean isValidData() {
-        return loginField.getText().toString().equals("log") &&
-                passwordField.getText().toString().equals("pas");
+    private Teacher getTeacher() {
+        return LoginManager.shared.getTeacher(loginField.getText().toString(), passwordField.getText().toString());
     }
     private void showAlertDialog() {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
