@@ -30,7 +30,7 @@ public class Teacher implements Serializable {
             new Student("Erik", "Sokol"),
             new Student("Boya", "Dimanov")
             ));
-    private static Group group = new Group("ИСТб-21-1", students);
+    public static Group group = new Group("ИСТб-21-1", students);
     public static ArrayList<Teacher> teachers = new ArrayList<>(Arrays.asList(
             new Teacher(
                     "arsh",
@@ -39,38 +39,35 @@ public class Teacher implements Serializable {
                     "Аршинский",
                     "Да",
                     new ArrayList<>(Arrays.asList(
-                            new Discipline("ООП", "https://el.istu.edu/pluginfile.php/373507/course/overviewfiles/3monsters%20%281%29.jpg", new ArrayList<>(Arrays.asList(
+                            new Discipline("Объектно ориентированное программирование", "https://ic.pics.livejournal.com/asy/89458/542816/542816_900.png", new ArrayList<>(Arrays.asList(
+                                    group,
+                                    group,
+                                    group
+                            ))),
+                            new Discipline("Технологии программирования", "https://static.wikia.nocookie.net/wikies/images/4/43/Logo-csharp.png/revision/latest/scale-to-width-down/500?cb=20180617092325&path-prefix=ru", new ArrayList<>(Arrays.asList(
+                                    group,
+                                    group,
+                                    group
+                            ))),new Discipline("Анализ бизнес-процессов", "https://ruli24.ru/wp-content/uploads/2018/07/bpm3-1.png", new ArrayList<>(Arrays.asList(
+                                    group,
+                                    group,
+                                    group
+                            ))),
+                            new Discipline("Исследование операций", "https://cdn-icons-png.flaticon.com/512/2640/2640882.png", new ArrayList<>(Arrays.asList(
+                                    group,
+                                    group,
+                                    group
+                            ))),
+                            new Discipline("Моделирование процессов и систем", "https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/285_R_Project_logo-512.png", new ArrayList<>(Arrays.asList(
+                                    group,
+                                    group,
+                                    group
+                            ))),
+                            new Discipline("Методы анализа данных", "https://cdn.iconscout.com/icon/free/png-256/data-science-46-1170621.png", new ArrayList<>(Arrays.asList(
                                     group,
                                     group,
                                     group
                             )))
-//                            ,
-//                            new Discipline("Анализ бизнес-процессов", new ArrayList<>(Arrays.asList(
-//                                    group,
-//                                    group,
-//                                    group
-//                            ))),
-//                            new Discipline("Исследование операций", new ArrayList<>(Arrays.asList(
-//                                    group,
-//                                    group,
-//                                    group
-//                            ))),
-//                            new Discipline("Моделирование процессов и систем", new ArrayList<>(Arrays.asList(
-//                                    group,
-//                                    group,
-//                                    group
-//                            ))),
-//                            new Discipline("Методы анализа данных", new ArrayList<>(Arrays.asList(
-//                                    group,
-//                                    group,
-//                                    group
-//                            ))),
-//                            new Discipline("C#", new ArrayList<>(Arrays.asList(
-//                                    group,
-//                                    group,
-//                                    group
-//                            )))
-
                     )))
     ));
 
@@ -97,21 +94,6 @@ public class Teacher implements Serializable {
     }
     public String getPassword() {
         return password;
-    }
-}
-
-class Group implements Serializable {
-    private String title;
-    private ArrayList<Student> students;
-    public Group(String title, ArrayList<Student> students) {
-        this.title = title;
-        this.students = students;
-    }
-    public ArrayList<Student> getStudents() {
-        return students;
-    }
-    public String getTitle() {
-        return title;
     }
 }
 

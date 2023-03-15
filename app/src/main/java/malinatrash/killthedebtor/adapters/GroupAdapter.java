@@ -9,16 +9,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import java.util.List;
 
-import malinatrash.killthedebtor.Discipline;
 import malinatrash.killthedebtor.DownloadImageTask;
+import malinatrash.killthedebtor.Group;
 import malinatrash.killthedebtor.R;
 
-public class DisciplineAdapter extends BaseAdapter {
-    private List<Discipline> list;
+public class GroupAdapter extends BaseAdapter {
+    private List<Group> list;
     private LayoutInflater layoutInflater;
-    public DisciplineAdapter(Context context, List<Discipline> list) {
+    public GroupAdapter(Context context, List<Group> list) {
         this.list = list;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -42,20 +43,18 @@ public class DisciplineAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup viewGroup) {
         View view = convertView;
         if (view == null) {
-            view = layoutInflater.inflate(R.layout.item_layout, viewGroup, false);
+            view = layoutInflater.inflate(R.layout.group_item, viewGroup, false);
         }
 
-        TextView discipline = (TextView) view.findViewById(R.id.discipline);
-        discipline.setText(getDiscipline(position).getTitle());
+        TextView groupName = (TextView) view.findViewById(R.id.groupName);
+        groupName.setText(getGroup(position).getTitle());
 
-        TextView groupCount = (TextView) view.findViewById(R.id.groupCount);
-        groupCount.setText("Количество групп: " + String.valueOf(getDiscipline(position).getGroupSize()));
-
-        new DownloadImageTask(view.findViewById(R.id.disciplineImage)).execute(getDiscipline(position).getImageURL());
+        TextView groupCount = (TextView) view.findViewById(R.id.debtorsCount);
+        groupCount.setText("Количество задолжников: " + String.valueOf(getGroup(position).getStudents().size()));
 
         return view;
     }
-    private Discipline getDiscipline(int position) {
-        return (Discipline) getItem(position);
+    private Group getGroup(int position) {
+        return (Group) getItem(position);
     }
 }

@@ -10,11 +10,15 @@ public class Discipline implements Serializable {
     public String getTitle() {
         return title;
     }
-
+    public String getImageURL() {
+        return imageURL;
+    }
     public int getGroupSize() {
         return groups.size();
     }
-
+    public ArrayList<Group> getGroups() {
+        return groups;
+    }
     Discipline(String title, String imageURL, ArrayList<Group> groups) {
         this.title = title;
         this.groups = groups;

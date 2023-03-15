@@ -7,28 +7,50 @@
 
     <TextView
         android:id="@+id/discipline"
-        android:layout_width="217dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="254dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="5dp"
+        android:autoLink="all"
         android:text="Дисциплина"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textDirection="locale"
         android:textSize="24sp"
+        app:autoSizeMinTextSize="13sp"
         app:autoSizeTextType="none"
+        app:layout_constraintBottom_toTopOf="@+id/groupCount"
+        app:layout_constraintEnd_toStartOf="@+id/disciplineImage"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/groupCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:paddingBottom="10dp"
         android:text="5 групп"
         android:textSize="20sp"
-        app:autoSizeTextType="uniform"
+        app:autoSizeTextType="none"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/discipline" />
+
+    <ImageView
+        android:id="@+id/disciplineImage"
+        android:layout_width="124dp"
+        android:layout_height="124dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingBottom="16dp"
+        android:scaleType="centerInside"
+        app:barrierMargin="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

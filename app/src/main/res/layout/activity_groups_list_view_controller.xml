@@ -7,7 +7,7 @@
     tools:context=".GroupsListViewController">
 
     <ListView
-        android:id="@+id/disciplinesList"
+        android:id="@+id/groupsList"
         android:layout_width="409dp"
         android:layout_height="729dp"
         android:layout_marginStart="1dp"
@@ -20,11 +20,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/teacherName2"
+        android:id="@+id/disciplineName"
         android:layout_width="370dp"
         android:layout_height="49dp"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="17dp"
         android:text="Дисциплина"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -33,6 +33,7 @@
         android:textStyle="normal"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

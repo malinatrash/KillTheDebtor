@@ -11,39 +11,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class GroupsListViewController extends AppCompatActivity {
+import malinatrash.killthedebtor.adapters.DisciplineAdapter;
+import malinatrash.killthedebtor.adapters.GroupAdapter;
 
-    private ListView disciplinesList;
-    private TextView teacherName;
-    private Teacher teacher;
-    private List<String> disciplines = new ArrayList<>();
+public class GroupsListViewController extends AppCompatActivity {
+    private ListView groupsList;
+    private TextView disciplineName;
+    private Discipline discipline;
+    private List<Group> groups = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_disciplines_list_view_controller);
+        setContentView(R.layout.activity_groups_list_view_controller);
         Objects.requireNonNull(getSupportActionBar()).hide();
-        getTeacher();
-        disciplinesList = findViewById(R.id.disciplinesList);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_1,
-                disciplines
-        );
-        disciplinesList.setAdapter(adapter);
+        getDiscipline();
+        groupsList = findViewById(R.id.groupsList);
+
+        GroupAdapter adapter = new GroupAdapter(this, groups);
+        groupsList.setAdapter(adapter);
+        groupsList.setOnItemClickListener((parent, view, position, id) -> {});
     }
-    private void getTeacher() {
+    private void getDiscipline() {
         Bundle arguments = getIntent().getExtras();
-        if(arguments != null) teacher = (Teacher) arguments.getSerializable(Teacher.class.getSimpleName());
-        setTeacherName();
-        parseDisciplines();
+        if(arguments != null) discipline = (Discipline) arguments.getSerializable(Discipline.class.getSimpleName());
+        setDisciplineName();
+        groups = discipline.getGroups();
     }
-    private void setTeacherName() {
-        teacherName = findViewById(R.id.teacherName);
-        teacherName.setText(String.format("%s %s", teacher.getFirstname(), teacher.getLastname()));
-    }
-    private void parseDisciplines() {
-        for (Discipline discipline: teacher.getDisciplines()) {
-            disciplines.add(discipline.getTitle());
-        }
+    private void setDisciplineName() {
+        disciplineName = findViewById(R.id.disciplineName);
+
+        if (disciplineName != null) disciplineName.setText(discipline.getTitle());
     }
 }
