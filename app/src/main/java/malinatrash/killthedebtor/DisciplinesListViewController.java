@@ -11,38 +11,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import malinatrash.killthedebtor.adapters.DisciplineAdapter;
+
 public class DisciplinesListViewController extends AppCompatActivity {
     private ListView disciplinesList;
     private TextView teacherName;
     private Teacher teacher;
-    private List<String> disciplines = new ArrayList<>();
+    private List<Discipline> disciplines = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disciplines_list_view_controller);
         Objects.requireNonNull(getSupportActionBar()).hide();
-        getTeacher();
         disciplinesList = findViewById(R.id.disciplinesList);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_1,
-                disciplines
-        );
+        getTeacher();
+        System.out.println(disciplines != null);
+
+        DisciplineAdapter adapter = new DisciplineAdapter(this, disciplines);
         disciplinesList.setAdapter(adapter);
     }
     private void getTeacher() {
         Bundle arguments = getIntent().getExtras();
         if(arguments != null) teacher = (Teacher) arguments.getSerializable(Teacher.class.getSimpleName());
         setTeacherName();
-        parseDisciplines();
+        disciplines = teacher.getDisciplines();
     }
     private void setTeacherName() {
         teacherName = findViewById(R.id.teacherName);
         teacherName.setText(String.format("%s %s", teacher.getFirstname(), teacher.getLastname()));
-    }
-    private void parseDisciplines() {
-        for (Discipline discipline: teacher.getDisciplines()) {
-            disciplines.add(discipline.getTitle());
-        }
     }
 }

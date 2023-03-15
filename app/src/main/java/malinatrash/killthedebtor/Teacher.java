@@ -39,11 +39,38 @@ public class Teacher implements Serializable {
                     "Аршинский",
                     "Да",
                     new ArrayList<>(Arrays.asList(
-                            new Discipline("ООП", new ArrayList<>(Arrays.asList(
+                            new Discipline("ООП", "https://el.istu.edu/pluginfile.php/373507/course/overviewfiles/3monsters%20%281%29.jpg", new ArrayList<>(Arrays.asList(
                                     group,
                                     group,
                                     group
                             )))
+//                            ,
+//                            new Discipline("Анализ бизнес-процессов", new ArrayList<>(Arrays.asList(
+//                                    group,
+//                                    group,
+//                                    group
+//                            ))),
+//                            new Discipline("Исследование операций", new ArrayList<>(Arrays.asList(
+//                                    group,
+//                                    group,
+//                                    group
+//                            ))),
+//                            new Discipline("Моделирование процессов и систем", new ArrayList<>(Arrays.asList(
+//                                    group,
+//                                    group,
+//                                    group
+//                            ))),
+//                            new Discipline("Методы анализа данных", new ArrayList<>(Arrays.asList(
+//                                    group,
+//                                    group,
+//                                    group
+//                            ))),
+//                            new Discipline("C#", new ArrayList<>(Arrays.asList(
+//                                    group,
+//                                    group,
+//                                    group
+//                            )))
+
                     )))
     ));
 
@@ -72,18 +99,8 @@ public class Teacher implements Serializable {
         return password;
     }
 }
-class Discipline implements Serializable {
-    private final String title;
-    private ArrayList<Group> groups;
-    public String getTitle() {
-        return title;
-    }
-    Discipline(String title, ArrayList<Group> groups) {
-        this.title = title;
-        this.groups = groups;
-    }
-}
-class Group {
+
+class Group implements Serializable {
     private String title;
     private ArrayList<Student> students;
     public Group(String title, ArrayList<Student> students) {
@@ -98,7 +115,7 @@ class Group {
     }
 }
 
-class Student {
+class Student implements  Serializable {
     private String firstname;
     private String lastname;
     public Student(String firstname, String lastname) {
