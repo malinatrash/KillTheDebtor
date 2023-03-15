@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class DisciplinesListViewController extends AppCompatActivity {
+public class GroupsListViewController extends AppCompatActivity {
+
     private ListView disciplinesList;
     private TextView teacherName;
     private Teacher teacher;
