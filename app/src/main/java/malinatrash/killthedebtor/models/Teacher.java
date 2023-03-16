@@ -1,7 +1,6 @@
-package malinatrash.killthedebtor;
+package malinatrash.killthedebtor.models;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -14,7 +13,7 @@ public class Teacher implements Serializable {
     private final ArrayList<Discipline> disciplines;
 
 
-    private static ArrayList<Student> students = new ArrayList<>(Arrays.asList(
+     static ArrayList<Student> students = new ArrayList<>(Arrays.asList(
             new Student("Pavel", "Naumov"),
             new Student("Dima", "Utka"),
             new Student("Ayur", "Tapkharov"),
@@ -39,7 +38,12 @@ public class Teacher implements Serializable {
                     "Аршинский",
                     "Да",
                     new ArrayList<>(Arrays.asList(
-                            new Discipline("Объектно ориентированное программирование", "https://ic.pics.livejournal.com/asy/89458/542816/542816_900.png", new ArrayList<>(Arrays.asList(
+                            new Discipline("Объектно- ориентированное программирование", "https://ic.pics.livejournal.com/asy/89458/542816/542816_900.png", new ArrayList<>(Arrays.asList(
+                                    group,
+                                    group,
+                                    group
+                            ))),
+                            new Discipline("WEB- Программирование", "https://www.freepnglogos.com/uploads/php-logo-png/php-logo-php-elephant-logo-vectors-download-5.png", new ArrayList<>(Arrays.asList(
                                     group,
                                     group,
                                     group
@@ -53,6 +57,11 @@ public class Teacher implements Serializable {
                                     group,
                                     group
                             ))),
+                            new Discipline("Разработка мобильный приложений", "https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/android-icon.png", new ArrayList<>(Arrays.asList(
+                                    group,
+                                    group,
+                                    group
+                           ))),
                             new Discipline("Исследование операций", "https://cdn-icons-png.flaticon.com/512/2640/2640882.png", new ArrayList<>(Arrays.asList(
                                     group,
                                     group,
@@ -94,21 +103,6 @@ public class Teacher implements Serializable {
     }
     public String getPassword() {
         return password;
-    }
-}
-
-class Student implements  Serializable {
-    private String firstname;
-    private String lastname;
-    public Student(String firstname, String lastname) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-    }
-    public String getFirstname() {
-        return firstname;
-    }
-    public String getLastname() {
-        return lastname;
     }
 }
 

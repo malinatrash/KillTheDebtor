@@ -1,12 +1,13 @@
-package malinatrash.killthedebtor;
+package malinatrash.killthedebtor.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Discipline implements Serializable {
     private final String title;
-    private ArrayList<Group> groups;
-    private String imageURL;
+    private final ArrayList<Group> groups;
+    private final String imageURL;
+    private Measurement measurement;
     public String getTitle() {
         return title;
     }

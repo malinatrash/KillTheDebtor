@@ -1,4 +1,4 @@
-package malinatrash.killthedebtor;
+package malinatrash.killthedebtor.services;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

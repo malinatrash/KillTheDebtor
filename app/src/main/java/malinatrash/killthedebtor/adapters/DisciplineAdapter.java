@@ -4,20 +4,18 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
-import malinatrash.killthedebtor.Discipline;
-import malinatrash.killthedebtor.DownloadImageTask;
+import malinatrash.killthedebtor.models.Discipline;
+import malinatrash.killthedebtor.services.DownloadImageTask;
 import malinatrash.killthedebtor.R;
 
 public class DisciplineAdapter extends BaseAdapter {
-    private List<Discipline> list;
-    private LayoutInflater layoutInflater;
+    private final List<Discipline> list;
+    private final LayoutInflater layoutInflater;
     public DisciplineAdapter(Context context, List<Discipline> list) {
         this.list = list;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -49,7 +47,7 @@ public class DisciplineAdapter extends BaseAdapter {
         discipline.setText(getDiscipline(position).getTitle());
 
         TextView groupCount = (TextView) view.findViewById(R.id.groupCount);
-        groupCount.setText("Количество групп: " + String.valueOf(getDiscipline(position).getGroupSize()));
+        groupCount.setText("Количество групп: " + getDiscipline(position).getGroupSize());
 
         new DownloadImageTask(view.findViewById(R.id.disciplineImage)).execute(getDiscipline(position).getImageURL());
 
