@@ -27,10 +27,8 @@ public class DisciplinesListViewController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disciplines_list_view_controller);
         Objects.requireNonNull(getSupportActionBar()).hide();
-        disciplinesList = findViewById(R.id.groupsList);
+        disciplinesList = findViewById(R.id.studentsList);
         getTeacher();
-        System.out.println(disciplines != null);
-
         DisciplineAdapter adapter = new DisciplineAdapter(this, disciplines);
         disciplinesList.setAdapter(adapter);
         disciplinesList.setOnItemClickListener((parent, view, position, id) -> getItem(position));
@@ -54,7 +52,7 @@ public class DisciplinesListViewController extends AppCompatActivity {
         disciplines = teacher.getDisciplines();
     }
     private void setTeacherName() {
-        teacherName = findViewById(R.id.teacherName);
+        teacherName = findViewById(R.id.grouptitle);
         teacherName.setText(String.format("%s %s", teacher.getFirstname(), teacher.getLastname()));
     }
 }

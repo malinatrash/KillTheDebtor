@@ -7,7 +7,7 @@
     tools:context=".ViewControllers.DisciplinesListViewController">
 
     <ListView
-        android:id="@+id/groupsList"
+        android:id="@+id/studentsList"
         android:layout_width="409dp"
         android:layout_height="729dp"
         android:layout_marginStart="1dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/teacherName"
+        android:id="@+id/grouptitle"
         android:layout_width="370dp"
         android:layout_height="49dp"
         android:layout_marginStart="17dp"
