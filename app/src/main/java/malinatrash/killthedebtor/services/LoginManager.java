@@ -1,9 +1,9 @@
-package malinatrash.killthedebtor;
+package malinatrash.killthedebtor.services;
 
-import android.sax.TextElementListener;
+import malinatrash.killthedebtor.models.Teacher;
 
 public class LoginManager {
-    static LoginManager shared = new LoginManager();
+    public static LoginManager shared = new LoginManager();
     public Teacher getTeacher(String login, String password) {
         Teacher teacherByLog = getTeaherByLogin(login);
         Teacher getTeacherByPas = getTeaherByPassword(password);

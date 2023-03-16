@@ -1,4 +1,4 @@
-package malinatrash.killthedebtor;
+package malinatrash.killthedebtor.ViewControllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import malinatrash.killthedebtor.R;
 import malinatrash.killthedebtor.adapters.DisciplineAdapter;
+import malinatrash.killthedebtor.models.Discipline;
+import malinatrash.killthedebtor.models.Teacher;
 
 public class DisciplinesListViewController extends AppCompatActivity {
     private ListView disciplinesList;

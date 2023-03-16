@@ -1,4 +1,4 @@
-package malinatrash.killthedebtor;
+package malinatrash.killthedebtor.ViewControllers;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.Objects;
+
+import malinatrash.killthedebtor.R;
+import malinatrash.killthedebtor.models.Teacher;
+import malinatrash.killthedebtor.services.LoginManager;
 
 public class LoginViewController extends AppCompatActivity {
     EditText loginField;

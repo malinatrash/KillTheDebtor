@@ -1,11 +1,13 @@
-package malinatrash.killthedebtor;
+package malinatrash.killthedebtor.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import malinatrash.killthedebtor.models.Student;
+
 public class Group implements Serializable {
-    private String title;
-    private ArrayList<Student> students;
+    private final String title;
+    private final ArrayList<Student> students;
 
     public Group(String title, ArrayList<Student> students) {
         this.title = title;

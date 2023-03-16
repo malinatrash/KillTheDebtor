@@ -1,9 +1,8 @@
-package malinatrash.killthedebtor;
+package malinatrash.killthedebtor.ViewControllers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -11,8 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import malinatrash.killthedebtor.adapters.DisciplineAdapter;
+import malinatrash.killthedebtor.R;
 import malinatrash.killthedebtor.adapters.GroupAdapter;
+import malinatrash.killthedebtor.models.Discipline;
+import malinatrash.killthedebtor.models.Group;
 
 public class GroupsListViewController extends AppCompatActivity {
     private ListView groupsList;
