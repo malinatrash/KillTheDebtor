@@ -42,6 +42,7 @@ public class LoginViewController extends AppCompatActivity {
     }
     private void sendTeacher(Intent intent, Teacher teacher) {
         intent.putExtra(Teacher.class.getSimpleName(), teacher);
+
     }
     private void navigateToDisciplinesList(Teacher teacher) {
         Intent intent = new Intent(this, DisciplinesListViewController.class);
