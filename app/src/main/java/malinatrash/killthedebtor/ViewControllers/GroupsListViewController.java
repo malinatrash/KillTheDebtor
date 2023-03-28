@@ -28,7 +28,7 @@ public class GroupsListViewController extends AppCompatActivity {
         setContentView(R.layout.activity_groups_list_view_controller);
         Objects.requireNonNull(getSupportActionBar()).hide();
         getDiscipline();
-        groupsList = findViewById(R.id.studentsList);
+        groupsList = findViewById(R.id.stList);
         GroupAdapter adapter = new GroupAdapter(this, groups);
         groupsList.setAdapter(adapter);
         groupsList.setOnItemClickListener((parent, view, position, id) -> getItem(position));

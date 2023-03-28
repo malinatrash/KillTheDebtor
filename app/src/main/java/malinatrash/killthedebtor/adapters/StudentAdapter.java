@@ -39,14 +39,14 @@ public class StudentAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup viewGroup) {
         View view = convertView;
         if (view == null) {
-            view = layoutInflater.inflate(R.layout.group_item, viewGroup, false);
+            view = layoutInflater.inflate(R.layout.student_item, viewGroup, false);
         }
 
-        TextView groupName = (TextView) view.findViewById(R.id.studentName);
+        TextView groupName = view.findViewById(R.id.studentName);
         Student student = getStudent(position);
         groupName.setText(String.format("%s %s", student.getFirstname(), student.getLastname()));
 
-        TextView groupCount = (TextView) view.findViewById(R.id.grade);
+        TextView groupCount = view.findViewById(R.id.grade);
         groupCount.setText("Не зачет");
 
         return view;

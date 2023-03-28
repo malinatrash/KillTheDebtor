@@ -1,5 +1,6 @@
 package malinatrash.killthedebtor.ViewControllers;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -11,12 +12,9 @@ import java.util.List;
 import java.util.Objects;
 
 import malinatrash.killthedebtor.R;
-import malinatrash.killthedebtor.adapters.GroupAdapter;
 import malinatrash.killthedebtor.adapters.StudentAdapter;
-import malinatrash.killthedebtor.models.Discipline;
 import malinatrash.killthedebtor.models.Group;
 import malinatrash.killthedebtor.models.Student;
-
 
 public class StudentsListViewController extends AppCompatActivity {
     private ListView studentsList;
@@ -26,10 +24,10 @@ public class StudentsListViewController extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_students_list_view_cotroller);
+        setContentView(R.layout.activity_students_list_view_controller);
         Objects.requireNonNull(getSupportActionBar()).hide();
         getGroup();
-        studentsList = findViewById(R.id.studentsList);
+        studentsList = findViewById(R.id.stList);
 
         StudentAdapter adapter = new StudentAdapter(this, students);
         studentsList.setAdapter(adapter);
@@ -42,7 +40,7 @@ public class StudentsListViewController extends AppCompatActivity {
         students = group.getStudents();
     }
     private void setGroupName() {
-        groupName = findViewById(R.id.group);
+        groupName = findViewById(R.id.grouptitle);
         if (groupName != null) groupName.setText(group.getTitle());
     }
 }
