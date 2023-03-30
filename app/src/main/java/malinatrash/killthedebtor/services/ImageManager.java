@@ -7,12 +7,13 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import java.io.InputStream;
+import java.util.concurrent.atomic.AtomicReference;
 
-public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-    ImageView bmImage;
+public class ImageManager extends AsyncTask<String, Void, Bitmap> {
+    final AtomicReference<ImageView> bmImage = new AtomicReference<ImageView>();
 
-    public DownloadImageTask(ImageView bmImage) {
-        this.bmImage = bmImage;
+    public ImageManager(ImageView bmImage) {
+        this.bmImage.set(bmImage);
     }
 
     protected Bitmap doInBackground(String... urls) {
@@ -29,6 +30,6 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     }
 
     protected void onPostExecute(Bitmap result) {
-        bmImage.setImageBitmap(result);
+        bmImage.get().setImageBitmap(result);
     }
 }

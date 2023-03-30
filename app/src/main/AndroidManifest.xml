@@ -15,6 +15,9 @@
         android:theme="@style/Theme.KillTheDebtor"
         tools:targetApi="31">
         <activity
+            android:name=".ViewControllers.DebtsListViewController"
+            android:exported="false" />
+        <activity
             android:name=".ViewControllers.StudentsListViewController"
             android:exported="false" />
         <activity

@@ -1,6 +1,5 @@
 package malinatrash.killthedebtor.ViewControllers;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,6 +14,7 @@ import malinatrash.killthedebtor.R;
 import malinatrash.killthedebtor.adapters.StudentAdapter;
 import malinatrash.killthedebtor.models.Group;
 import malinatrash.killthedebtor.models.Student;
+import malinatrash.killthedebtor.services.StateManager;
 
 public class StudentsListViewController extends AppCompatActivity {
     private ListView studentsList;
@@ -27,15 +27,14 @@ public class StudentsListViewController extends AppCompatActivity {
         setContentView(R.layout.activity_students_list_view_controller);
         Objects.requireNonNull(getSupportActionBar()).hide();
         getGroup();
-        studentsList = findViewById(R.id.stList);
+        studentsList = findViewById(R.id.debtsList);
 
         StudentAdapter adapter = new StudentAdapter(this, students);
         studentsList.setAdapter(adapter);
         studentsList.setOnItemClickListener((parent, view, position, id) -> {});
     }
     private void getGroup() {
-        Bundle arguments = getIntent().getExtras();
-        if(arguments != null) group = (Group) arguments.getSerializable(Group.class.getSimpleName());
+        group = StateManager.shared.getCurrentGroup();
         setGroupName();
         students = group.getStudents();
     }

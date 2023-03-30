@@ -15,6 +15,7 @@ import malinatrash.killthedebtor.R;
 import malinatrash.killthedebtor.adapters.GroupAdapter;
 import malinatrash.killthedebtor.models.Discipline;
 import malinatrash.killthedebtor.models.Group;
+import malinatrash.killthedebtor.services.StateManager;
 
 public class GroupsListViewController extends AppCompatActivity {
     private ListView groupsList;
@@ -28,7 +29,7 @@ public class GroupsListViewController extends AppCompatActivity {
         setContentView(R.layout.activity_groups_list_view_controller);
         Objects.requireNonNull(getSupportActionBar()).hide();
         getDiscipline();
-        groupsList = findViewById(R.id.stList);
+        groupsList = findViewById(R.id.debtsList);
         GroupAdapter adapter = new GroupAdapter(this, groups);
         groupsList.setAdapter(adapter);
         groupsList.setOnItemClickListener((parent, view, position, id) -> getItem(position));
@@ -37,22 +38,18 @@ public class GroupsListViewController extends AppCompatActivity {
         group = groups.get(position);
         navigateToStudentsList();
     }
-    private void sendGroup(Intent intent) {
-        intent.putExtra(Group.class.getSimpleName(), group);
+    private void sendGroup() {
+        StateManager.shared.setCurrentGroup(group);
     }
     private void navigateToStudentsList() {
         Intent intent = new Intent(this, StudentsListViewController.class);
-        sendGroup(intent);
+        sendGroup();
         startActivity(intent);
     }
     private void getDiscipline() {
-        Bundle arguments = getIntent().getExtras();
-        if(arguments != null) discipline = (Discipline) arguments.getSerializable(Discipline.class.getSimpleName());
-        setDisciplineName();
-        groups = discipline.getGroups();
-    }
-    private void setDisciplineName() {
+        discipline = StateManager.shared.getCurrentDiscipline();
         disciplineName = findViewById(R.id.disciplineName);
         disciplineName.setText(discipline.getTitle());
+        groups = discipline.getGroups();
     }
 }

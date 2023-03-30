@@ -7,7 +7,7 @@
     tools:context=".ViewControllers.GroupsListViewController">
 
     <ListView
-        android:id="@+id/stList"
+        android:id="@+id/debtsList"
         android:layout_width="409dp"
         android:layout_height="729dp"
         android:layout_marginStart="1dp"

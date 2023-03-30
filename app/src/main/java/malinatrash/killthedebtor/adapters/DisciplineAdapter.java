@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import malinatrash.killthedebtor.models.Discipline;
-import malinatrash.killthedebtor.services.DownloadImageTask;
+import malinatrash.killthedebtor.services.ImageManager;
 import malinatrash.killthedebtor.R;
 
 public class DisciplineAdapter extends BaseAdapter {
@@ -49,7 +49,7 @@ public class DisciplineAdapter extends BaseAdapter {
         TextView groupCount = (TextView) view.findViewById(R.id.groupCount);
         groupCount.setText("Количество групп: " + getDiscipline(position).getGroupSize());
 
-        new DownloadImageTask(view.findViewById(R.id.disciplineImage)).execute(getDiscipline(position).getImageURL());
+        new ImageManager(view.findViewById(R.id.disciplineImage)).execute(getDiscipline(position).getImageURL());
 
         return view;
     }

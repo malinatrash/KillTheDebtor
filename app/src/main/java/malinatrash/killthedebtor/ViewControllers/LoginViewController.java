@@ -14,6 +14,7 @@ import java.util.Objects;
 import malinatrash.killthedebtor.R;
 import malinatrash.killthedebtor.models.Teacher;
 import malinatrash.killthedebtor.services.LoginManager;
+import malinatrash.killthedebtor.services.StateManager;
 
 public class LoginViewController extends AppCompatActivity {
     EditText loginField;
@@ -40,26 +41,26 @@ public class LoginViewController extends AppCompatActivity {
         }
         navigateToDisciplinesList(teacher);
     }
-    private void sendTeacher(Intent intent, Teacher teacher) {
-        intent.putExtra(Teacher.class.getSimpleName(), teacher);
-
+    private void sendTeacher(Teacher teacher) {
+        StateManager.shared.setCurrentTeacher(teacher);
     }
     private void navigateToDisciplinesList(Teacher teacher) {
         Intent intent = new Intent(this, DisciplinesListViewController.class);
-        sendTeacher(intent, teacher);
+        sendTeacher(teacher);
         startActivity(intent);
     }
     private Teacher getTeacher() {
         return LoginManager.shared.getTeacher(loginField.getText().toString(), passwordField.getText().toString());
     }
+    private void clearFields() {
+        loginField.setText("");
+        passwordField.setText("");
+    }
     private void showAlertDialog() {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Ошибка");
+        alert.setTitle("Ошибка!");
         alert.setMessage("Неправильно введён логин или пароль");
-        alert.setPositiveButton("Ок", (dialogInterface, i) -> {
-            loginField.setText("");
-            passwordField.setText("");
-        });
+        alert.setPositiveButton("Ок", (dialogInterface, i) -> clearFields());
         alert.create().show();
     }
 }

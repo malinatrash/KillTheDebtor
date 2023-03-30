@@ -15,6 +15,7 @@ import malinatrash.killthedebtor.R;
 import malinatrash.killthedebtor.adapters.DisciplineAdapter;
 import malinatrash.killthedebtor.models.Discipline;
 import malinatrash.killthedebtor.models.Teacher;
+import malinatrash.killthedebtor.services.StateManager;
 
 public class DisciplinesListViewController extends AppCompatActivity {
     private ListView disciplinesList;
@@ -37,21 +38,17 @@ public class DisciplinesListViewController extends AppCompatActivity {
         discipline = disciplines.get(position);
         navigateToGroupsList();
     }
-    private void sendDiscipline(Intent intent) {
-        intent.putExtra(Discipline.class.getSimpleName(), discipline);
+    private void sendDiscipline() {
+        StateManager.shared.setCurrentDiscipline(discipline);
     }
     private void navigateToGroupsList() {
         Intent intent = new Intent(this, GroupsListViewController.class);
-        sendDiscipline(intent);
+        sendDiscipline();
         startActivity(intent);
     }
     private void getTeacher() {
-        Bundle arguments = getIntent().getExtras();
-        if(arguments != null) teacher = (Teacher) arguments.getSerializable(Teacher.class.getSimpleName());
-        setTeacherName();
+        teacher = StateManager.shared.getCurrentTeacher();
         disciplines = teacher.getDisciplines();
-    }
-    private void setTeacherName() {
         teacherName = findViewById(R.id.grouptitle);
         teacherName.setText(String.format("%s %s", teacher.getFirstname(), teacher.getLastname()));
     }

@@ -21,4 +21,6 @@ public class Group implements Serializable {
     public String getTitle() {
         return title;
     }
+
+    public static Group group = new Group("ИСТб-21-1", Student.students);
 }
