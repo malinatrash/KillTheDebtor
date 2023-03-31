@@ -19,6 +19,7 @@ import malinatrash.killthedebtor.services.StateManager;
 public class StudentsListViewController extends AppCompatActivity {
     private ListView studentsList;
     private TextView groupName;
+
     private Group group;
     private List<Student> students = new ArrayList<>();
     @Override
