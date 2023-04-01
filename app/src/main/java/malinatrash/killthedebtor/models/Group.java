@@ -22,5 +22,15 @@ public class Group implements Serializable {
         return title;
     }
 
+    public int getCountDebtors() {
+        int count = 0;
+        for (Student student: students) {
+            if (student.isDebtor()) {
+                count ++;
+            }
+        }
+        return count;
+    }
+
     public static Group group = new Group("ИСТб-21-1", Student.students);
 }

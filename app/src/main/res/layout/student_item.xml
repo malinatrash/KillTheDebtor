@@ -6,36 +6,49 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/grade"
-        android:layout_width="93dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
+        android:id="@+id/countDebts"
+        android:layout_width="105dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
         android:paddingBottom="10dp"
-        android:text="Не зачет"
+        android:text="Долгов: 15"
         android:textSize="20sp"
         app:autoSizeTextType="none"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/studentName"
+        app:layout_constraintTop_toBottomOf="@+id/grade" />
+
+    <TextView
+        android:id="@+id/grade"
+        android:layout_width="115dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:paddingBottom="10dp"
+        android:text="Нет оценки"
+        android:textSize="20sp"
+        app:autoSizeTextType="none"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/studentName"
         android:layout_width="290dp"
-        android:layout_height="60dp"
+        android:layout_height="75dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="1dp"
         android:autoLink="all"
+        android:gravity="center_vertical"
         android:text="Наумов Павел"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:textAlignment="gravity"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textDirection="locale"
         android:textSize="26sp"
         app:autoSizeMinTextSize="13sp"
         app:autoSizeTextType="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/grade"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,19 +11,23 @@ public class Discipline implements Serializable {
     private final String title;
     private final ArrayList<Group> groups;
     private final String imageURL;
-//    private Measurement<T>;
+
     public String getTitle() {
         return title;
     }
+
     public String getImageURL() {
         return imageURL;
     }
-    public int getGroupSize() {
+
+    public int getGroupsCount() {
         return groups.size();
     }
+
     public ArrayList<Group> getGroups() {
         return groups;
     }
+
     Discipline(String title, String imageURL, ArrayList<Group> groups) {
         this.title = title;
         this.groups = groups;
@@ -45,7 +49,7 @@ public class Discipline implements Serializable {
                     group,
                     group,
                     group
-            ))),new Discipline("Анализ бизнес-процессов", "https://ruli24.ru/wp-content/uploads/2018/07/bpm3-1.png", new ArrayList<>(Arrays.asList(
+            ))), new Discipline("Анализ бизнес-процессов", "https://ruli24.ru/wp-content/uploads/2018/07/bpm3-1.png", new ArrayList<>(Arrays.asList(
                     group,
                     group,
                     group

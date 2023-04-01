@@ -12,6 +12,7 @@ import java.util.List;
 
 import malinatrash.killthedebtor.models.Group;
 import malinatrash.killthedebtor.R;
+import malinatrash.killthedebtor.services.StateManager;
 
 public class GroupAdapter extends BaseAdapter {
     private final List<Group> list;
@@ -47,7 +48,7 @@ public class GroupAdapter extends BaseAdapter {
         groupName.setText(getGroup(position).getTitle());
 
         TextView groupCount = (TextView) view.findViewById(R.id.debtorsCount);
-        groupCount.setText("Количество задолжников: " + getGroup(position).getStudents().size());
+        groupCount.setText("Количество задолжников: " + getGroup(position).getCountDebtors());
 
         return view;
     }

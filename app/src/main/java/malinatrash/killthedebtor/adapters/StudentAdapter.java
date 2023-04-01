@@ -42,12 +42,16 @@ public class StudentAdapter extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.student_item, viewGroup, false);
         }
 
+        TextView countDebts = view.findViewById(R.id.countDebts);
+        String count = String.valueOf(getStudent(position).getCountDebts());
+        countDebts.setText("Долгов: " + count);
+
         TextView groupName = view.findViewById(R.id.studentName);
         Student student = getStudent(position);
         groupName.setText(String.format("%s %s", student.getFirstname(), student.getLastname()));
 
         TextView groupCount = view.findViewById(R.id.grade);
-        groupCount.setText("Не зачет");
+        groupCount.setText(getStudent(position).getGrade());
 
         return view;
     }

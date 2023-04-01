@@ -47,7 +47,7 @@ public class DisciplineAdapter extends BaseAdapter {
         discipline.setText(getDiscipline(position).getTitle());
 
         TextView groupCount = (TextView) view.findViewById(R.id.groupCount);
-        groupCount.setText("Количество групп: " + getDiscipline(position).getGroupSize());
+        groupCount.setText("Количество групп: " + getDiscipline(position).getGroupsCount());
 
         new ImageManager(view.findViewById(R.id.disciplineImage)).execute(getDiscipline(position).getImageURL());
 
