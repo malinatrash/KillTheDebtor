@@ -18,6 +18,7 @@ import malinatrash.killthedebtor.models.Teacher;
 import malinatrash.killthedebtor.services.StateManager;
 
 public class DisciplinesListViewController extends AppCompatActivity {
+    private DisciplineAdapter adapter;
     private ListView disciplinesList;
     private TextView teacherName;
     private Teacher teacher;
@@ -30,20 +31,16 @@ public class DisciplinesListViewController extends AppCompatActivity {
         setContentView(R.layout.activity_disciplines_list_view_controller);
         Objects.requireNonNull(getSupportActionBar()).hide();
         disciplinesList = findViewById(R.id.studentsList);
-        render();
+        getTeacher();
+        adapter = new DisciplineAdapter(this, disciplines);
+        disciplinesList.setAdapter(adapter);
+        disciplinesList.setOnItemClickListener((parent, view, position, id) -> getItem(position));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        render();
-    }
-
-    private void render() {
-        getTeacher();
-        DisciplineAdapter adapter = new DisciplineAdapter(this, disciplines);
-        disciplinesList.setAdapter(adapter);
-        disciplinesList.setOnItemClickListener((parent, view, position, id) -> getItem(position));
+        adapter.notifyDataSetChanged();
     }
 
     private void getItem(int position) {

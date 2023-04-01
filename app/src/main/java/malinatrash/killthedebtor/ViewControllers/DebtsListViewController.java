@@ -85,6 +85,7 @@ public class DebtsListViewController extends AppCompatActivity {
             ActivityManager.hideKeyboard(this);
             debtsList.setVisibility(View.VISIBLE);
             sendGrade();
+            onBackPressed();
         });
     }
 

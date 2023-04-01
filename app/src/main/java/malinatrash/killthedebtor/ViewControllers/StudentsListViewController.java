@@ -20,6 +20,7 @@ import malinatrash.killthedebtor.services.StateManager;
 public class StudentsListViewController extends AppCompatActivity {
     private ListView studentsList;
     private TextView groupName;
+    private StudentAdapter adapter;
     private Group group;
     private Student student;
     private List<Student> students = new ArrayList<>();
@@ -30,20 +31,16 @@ public class StudentsListViewController extends AppCompatActivity {
         setContentView(R.layout.activity_students_list_view_controller);
         Objects.requireNonNull(getSupportActionBar()).hide();
         studentsList = findViewById(R.id.debtsList);
-        render();
+        getGroup();
+        adapter = new StudentAdapter(this, students);
+        studentsList.setAdapter(adapter);
+        studentsList.setOnItemClickListener((parent, view, position, id) -> getItem(position));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        render();
-    }
-
-    private void render() {
-        getGroup();
-        StudentAdapter adapter = new StudentAdapter(this, students);
-        studentsList.setAdapter(adapter);
-        studentsList.setOnItemClickListener((parent, view, position, id) -> getItem(position));
+        adapter.notifyDataSetChanged();
     }
 
     private void getGroup() {
