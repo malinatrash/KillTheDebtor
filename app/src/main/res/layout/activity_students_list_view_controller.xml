@@ -13,7 +13,6 @@
         android:layout_marginStart="17dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="17dp"
-        android:text="Группа"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textDirection="locale"
         android:textSize="34sp"

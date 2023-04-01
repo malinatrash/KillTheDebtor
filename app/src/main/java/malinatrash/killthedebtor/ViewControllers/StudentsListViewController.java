@@ -23,6 +23,7 @@ public class StudentsListViewController extends AppCompatActivity {
     private Group group;
     private Student student;
     private List<Student> students = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +68,7 @@ public class StudentsListViewController extends AppCompatActivity {
     }
 
     private void setGroupName() {
-        groupName = findViewById(R.id.grouptitle);
+        groupName = findViewById(R.id.groupname);
         if (groupName != null) groupName.setText(group.getTitle());
     }
 }

@@ -1,11 +1,11 @@
 package malinatrash.killthedebtor.ViewControllers;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +23,7 @@ public class DisciplinesListViewController extends AppCompatActivity {
     private Teacher teacher;
     private List<Discipline> disciplines = new ArrayList<>();
     private Discipline discipline;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,18 +50,21 @@ public class DisciplinesListViewController extends AppCompatActivity {
         discipline = disciplines.get(position);
         navigateToGroupsList();
     }
+
     private void sendDiscipline() {
         StateManager.shared.setCurrentDiscipline(discipline);
     }
+
     private void navigateToGroupsList() {
         Intent intent = new Intent(this, GroupsListViewController.class);
         sendDiscipline();
         startActivity(intent);
     }
+
     private void getTeacher() {
         teacher = StateManager.shared.getCurrentTeacher();
         disciplines = teacher.getDisciplines();
-        teacherName = findViewById(R.id.grouptitle);
+        teacherName = findViewById(R.id.teacherName);
         teacherName.setText(String.format("%s %s", teacher.getFirstname(), teacher.getLastname()));
     }
 }
