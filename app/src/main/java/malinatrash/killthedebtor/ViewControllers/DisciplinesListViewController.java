@@ -29,11 +29,22 @@ public class DisciplinesListViewController extends AppCompatActivity {
         setContentView(R.layout.activity_disciplines_list_view_controller);
         Objects.requireNonNull(getSupportActionBar()).hide();
         disciplinesList = findViewById(R.id.studentsList);
+        render();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        render();
+    }
+
+    private void render() {
         getTeacher();
         DisciplineAdapter adapter = new DisciplineAdapter(this, disciplines);
         disciplinesList.setAdapter(adapter);
         disciplinesList.setOnItemClickListener((parent, view, position, id) -> getItem(position));
     }
+
     private void getItem(int position) {
         discipline = disciplines.get(position);
         navigateToGroupsList();
