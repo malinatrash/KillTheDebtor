@@ -2,7 +2,6 @@ package malinatrash.killthedebtor.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Teacher implements Serializable {
     private final String login;
@@ -11,15 +10,7 @@ public class Teacher implements Serializable {
     private final String lastname;
     private final String thirdname;
     private final ArrayList<Discipline> disciplines;
-    public static ArrayList<Teacher> teachers = new ArrayList<>(Arrays.asList(
-            new Teacher(
-                    "arsh",
-                    "pas",
-                    "Вадим",
-                    "Аршинский",
-                    "Леонидович",
-                    Discipline.disciplines
-    )));
+
 
     public Teacher(String login, String password, String firstname, String lastname, String thirdname, ArrayList<Discipline> disciplines) {
         this.login = login;
@@ -33,15 +24,19 @@ public class Teacher implements Serializable {
     public ArrayList<Discipline> getDisciplines() {
         return disciplines;
     }
+
     public String getFirstname() {
         return firstname;
     }
+
     public String getLastname() {
         return lastname;
     }
+
     public String getLogin() {
         return login;
     }
+
     public String getPassword() {
         return password;
     }

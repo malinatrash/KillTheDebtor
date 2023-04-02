@@ -37,6 +37,7 @@ public class LoginViewController extends AppCompatActivity {
 
     private void signInButtonPressed() {
         Teacher teacher = getTeacher();
+//        teacher = LoginManager.shared.teachers.get(0);
         if (teacher == null) {
             showAlertDialog();
             return;

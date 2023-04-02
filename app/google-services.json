@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "320281603152",
+    "firebase_url": "https://killthedebtor-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "killthedebtor",
+    "storage_bucket": "killthedebtor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:320281603152:android:8192182c57925b575df555",
+        "android_client_info": {
+          "package_name": "malinatrash.killthedebtor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "320281603152-fo6ka4ng68o7f4n5ce5ee7uuoqtu9rcc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCP4MUG6X6-2IapiEOJDjAAiCBlJHFZjcY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "320281603152-fo6ka4ng68o7f4n5ce5ee7uuoqtu9rcc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

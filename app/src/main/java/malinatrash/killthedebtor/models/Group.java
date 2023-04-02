@@ -3,8 +3,6 @@ package malinatrash.killthedebtor.models;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import malinatrash.killthedebtor.models.Student;
-
 public class Group implements Serializable {
     private final String title;
     private final ArrayList<Student> students;
@@ -24,13 +22,11 @@ public class Group implements Serializable {
 
     public int getCountDebtors() {
         int count = 0;
-        for (Student student: students) {
+        for (Student student : students) {
             if (student.isDebtor()) {
-                count ++;
+                count++;
             }
         }
         return count;
     }
-
-    public static Group group = new Group("ИСТб-21-1", Student.students);
 }

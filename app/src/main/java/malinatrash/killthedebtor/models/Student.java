@@ -1,35 +1,12 @@
 package malinatrash.killthedebtor.models;
 
-import static malinatrash.killthedebtor.models.AcademicPerformance.CSharp;
-import static malinatrash.killthedebtor.models.AcademicPerformance.OOP;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import malinatrash.killthedebtor.services.StateManager;
 
 public class Student implements Serializable {
-    static ArrayList<AcademicPerformance> defaultAcademicPerformances = new ArrayList<>(Arrays.asList(OOP, CSharp));
-    static ArrayList<Student> students = new ArrayList<>(
-            Arrays.asList(
-                    new Student("Pavel", "Naumov", defaultAcademicPerformances),
-                    new Student("Dima", "Utka", defaultAcademicPerformances),
-                    new Student("Ayur", "Tapkharov", defaultAcademicPerformances),
-                    new Student("Kesha", "Dudar", defaultAcademicPerformances),
-                    new Student("Egor", "Aeropov", defaultAcademicPerformances),
-                    new Student("Erik", "Sokol", defaultAcademicPerformances),
-                    new Student("Boya", "Dimanov", defaultAcademicPerformances),
-                    new Student("Pavel", "Naumov", defaultAcademicPerformances),
-                    new Student("Dima", "Utka", defaultAcademicPerformances),
-                    new Student("Ayur", "Tapkharov", defaultAcademicPerformances),
-                    new Student("Kesha", "Dudar", defaultAcademicPerformances),
-                    new Student("Egor", "Aeropov", defaultAcademicPerformances),
-                    new Student("Erik", "Sokol", defaultAcademicPerformances),
-                    new Student("Boya", "Dimanov", defaultAcademicPerformances)
-            )
-    );
     private final String firstname;
     private final String lastname;
     private final ArrayList<AcademicPerformance> academicPerformances;

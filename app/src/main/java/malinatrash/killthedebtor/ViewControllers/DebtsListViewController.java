@@ -92,7 +92,14 @@ public class DebtsListViewController extends AppCompatActivity {
     private void sendGrade() {
         switch (measure) {
             case EXAM:
-                student.getAcademicPerfomance().setGrade((Integer.valueOf(gradeTextField.getText().toString())));
+                int grade = 0;
+                if (gradeTextField.getText() != null && !gradeTextField.getText().toString().isEmpty()) {
+                    int inputGrade = Integer.parseInt(gradeTextField.getText().toString());
+                    if (inputGrade >= 1 && inputGrade <= 5) {
+                        grade = inputGrade;
+                        student.getAcademicPerfomance().setGrade((grade));
+                    }
+                }
                 break;
             default:
                 student.getAcademicPerfomance().setGrade(isPassedCheckBox.isChecked());

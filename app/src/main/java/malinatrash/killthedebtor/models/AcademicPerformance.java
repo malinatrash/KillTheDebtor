@@ -1,40 +1,8 @@
 package malinatrash.killthedebtor.models;
 
-import static malinatrash.killthedebtor.models.Debt.debt1;
-import static malinatrash.killthedebtor.models.Debt.debt2;
-import static malinatrash.killthedebtor.models.Debt.debt3;
-import static malinatrash.killthedebtor.models.Debt.debt4;
-import static malinatrash.killthedebtor.models.Debt.debt5;
-import static malinatrash.killthedebtor.models.Debt.debt6;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class AcademicPerformance<T> {
-    static AcademicPerformance<Integer> OOP = new AcademicPerformance<>(
-            "Объектно- ориентированное программирование",
-            new ArrayList<Debt>(Arrays.asList(
-                    debt1,
-                    debt2,
-                    debt3,
-                    debt4,
-                    debt5,
-                    debt6
-            )),
-            Measure.EXAM
-    );
-    static AcademicPerformance<Integer> CSharp = new AcademicPerformance<>(
-            "Технологии программирования",
-            new ArrayList<Debt>(Arrays.asList(
-                    debt1,
-                    debt2,
-                    debt3,
-                    debt4,
-                    debt5,
-                    debt6
-            )),
-            Measure.CREDIT
-    );
     private final Measure measure;
     private final ArrayList<Debt> debts;
     private String disciplineTitle;
@@ -44,6 +12,7 @@ public class AcademicPerformance<T> {
         this.disciplineTitle = disciplineTitle;
         this.debts = debts;
         this.measure = measure;
+        this.grade = null;
     }
 
     public String getDisciplineTitle() {
