@@ -61,6 +61,7 @@ public class StudentsListViewController extends AppCompatActivity {
     }
 
     private void sendStudent() {
+
         StateManager.shared.setCurrentStudent(student);
     }
 

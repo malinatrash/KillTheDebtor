@@ -5,14 +5,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Discipline implements Serializable {
-    private final String title;
-    private final ArrayList<Group> groups;
-    private final String imageURL;
+    private String title;
+    private ArrayList<Group> groups;
+    private String imageURL;
 
     public Discipline(String title, String imageURL, ArrayList<Group> groups) {
         this.title = title;
         this.groups = groups;
         this.imageURL = imageURL;
+    }
+
+    public Discipline() {
     }
 
     public String getTitle() {

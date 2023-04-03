@@ -75,6 +75,13 @@ public class DebtsListViewController extends AppCompatActivity {
         if (measure.equals(Measure.CREDIT)) {
             sendGradeButton.setVisibility(View.GONE);
             gradeTextField.setVisibility(View.GONE);
+            if (student.getAcademicPerfomance().getGrade() == null) {
+                isPassedCheckBox.setText("Не зачтено");
+            } else if (((Boolean) student.getAcademicPerfomance().getGrade())) {
+                isPassedCheckBox.setText("Зачтено");
+            } else {
+                isPassedCheckBox.setText("Не зачтено");
+            }
         } else if (measure.equals(Measure.EXAM)) {
             isPassedCheckBox.setVisibility(View.GONE);
         }

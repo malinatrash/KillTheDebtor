@@ -4,12 +4,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Group implements Serializable {
-    private final String title;
-    private final ArrayList<Student> students;
+    private String title;
+    private ArrayList<Student> students;
 
     public Group(String title, ArrayList<Student> students) {
         this.title = title;
         this.students = students;
+    }
+
+    public Group() {
     }
 
     public ArrayList<Student> getStudents() {

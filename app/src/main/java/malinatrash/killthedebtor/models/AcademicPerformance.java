@@ -3,8 +3,8 @@ package malinatrash.killthedebtor.models;
 import java.util.ArrayList;
 
 public class AcademicPerformance<T> {
-    private final Measure measure;
-    private final ArrayList<Debt> debts;
+    private Measure measure;
+    private ArrayList<Debt> debts;
     private String disciplineTitle;
     private T grade;
 
@@ -13,6 +13,9 @@ public class AcademicPerformance<T> {
         this.debts = debts;
         this.measure = measure;
         this.grade = null;
+    }
+
+    public AcademicPerformance() {
     }
 
     public String getDisciplineTitle() {
@@ -27,6 +30,10 @@ public class AcademicPerformance<T> {
         return measure;
     }
 
+    public void setMeasure(Measure measure) {
+        this.measure = measure;
+    }
+
     public int getCountDebts() {
         int count = 0;
         for (Debt debt : debts) {
@@ -39,6 +46,10 @@ public class AcademicPerformance<T> {
 
     public ArrayList<Debt> getDebts() {
         return debts;
+    }
+
+    public void setDebts(ArrayList<Debt> debts) {
+        this.debts = debts;
     }
 
     public T getGrade() {
@@ -60,6 +71,17 @@ public class AcademicPerformance<T> {
             }
         }
         return "Нет оценки";
+    }
+
+    public boolean gradeIsOk() {
+        if (getGrade() instanceof Boolean) {
+            return (Boolean) getGrade();
+        } else if (getGrade() instanceof Integer) {
+            if (getGrade() != null) {
+                return ((Integer) getGrade()) > 2;
+            }
+        }
+        return false;
     }
 
     public boolean debtsExists() {

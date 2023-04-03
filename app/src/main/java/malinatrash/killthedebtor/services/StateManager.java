@@ -13,13 +13,16 @@ public class StateManager {
     public Group currentGroup;
     public Student currentStudent;
     public AcademicPerformance currentAcademicPerformance;
-    StateManager() {}
+
+    StateManager() {
+    }
+
+    public Discipline getCurrentDiscipline() {
+        return currentDiscipline;
+    }
 
     public void setCurrentDiscipline(Discipline discipline) {
         this.currentDiscipline = discipline;
-    }
-    public Discipline getCurrentDiscipline() {
-        return currentDiscipline;
     }
 
     public Group getCurrentGroup() {
@@ -36,14 +39,7 @@ public class StateManager {
 
     public void setCurrentStudent(Student currentStudent) {
         this.currentStudent = currentStudent;
-    }
-
-    public AcademicPerformance getCurrentAcademicPerformance() {
-        return currentAcademicPerformance;
-    }
-
-    public void setCurrentAcademicPerformance(AcademicPerformance currentAcademicPerformance) {
-        this.currentAcademicPerformance = currentAcademicPerformance;
+        this.currentAcademicPerformance = currentStudent.getAcademicPerfomance();
     }
 
     public Teacher getCurrentTeacher() {

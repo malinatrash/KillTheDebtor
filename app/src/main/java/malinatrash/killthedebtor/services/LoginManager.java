@@ -1,47 +1,39 @@
 package malinatrash.killthedebtor.services;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import malinatrash.killthedebtor.models.Teacher;
-import malinatrash.killthedebtor.models.fabrics.TeacherFabric;
 
 public class LoginManager {
     public static LoginManager shared = new LoginManager();
+    private Teacher teacher;
 
-    public ArrayList<Teacher> teachers = new ArrayList<>(Arrays.asList(
-            TeacherFabric.shared.getTeacherArsh(),
-            TeacherFabric.shared.getTeacherBuch(),
-            TeacherFabric.shared.getTeacherKatash(),
-            TeacherFabric.shared.getTeacherMalan(),
-            TeacherFabric.shared.getTeacherPetrov()
-    ));
-
-    public Teacher getTeacher(String login, String password) {
-        Teacher teacherByLog = getTeaherByLogin(login);
-        Teacher getTeacherByPas = getTeaherByPassword(password);
-
-        if (teacherByLog == getTeacherByPas) {
-            return teacherByLog;
-        }
-        return null;
-    }
-
-    private Teacher getTeaherByLogin(String login) {
-        for (Teacher teacher : teachers) {
-            if (teacher.getLogin().equals(login)) {
-                return teacher;
+    public Teacher getTeacher(DatabaseReference database, String login, String password) {
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    Teacher checkingTeacher = ds.getValue(Teacher.class);
+                    if (checkingTeacher.getLogin().equals(login) && checkingTeacher.getPassword().equals(password)) {
+                        teacher = checkingTeacher;
+                        System.out.println("\n\n\n\n\n");
+                        System.out.println(checkingTeacher.getLogin());
+                        System.out.println("\n\n\n\n\n");
+                    }
+                }
             }
-        }
-        return null;
-    }
 
-    private Teacher getTeaherByPassword(String password) {
-        for (Teacher teacher : teachers) {
-            if (teacher.getPassword().equals(password)) {
-                return teacher;
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
-        }
-        return null;
+        };
+        database.addValueEventListener(valueEventListener);
+        return teacher;
     }
 }

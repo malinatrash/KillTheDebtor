@@ -2,19 +2,21 @@ package malinatrash.killthedebtor.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import malinatrash.killthedebtor.services.StateManager;
 
 public class Student implements Serializable {
-    private final String firstname;
-    private final String lastname;
-    private final ArrayList<AcademicPerformance> academicPerformances;
+    private String firstname;
+    private String lastname;
+    private ArrayList<AcademicPerformance> academicPerformances;
 
     public Student(String firstname, String lastname, ArrayList<AcademicPerformance> academicPerformances) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.academicPerformances = academicPerformances;
+    }
+
+    public Student() {
     }
 
     public String getFirstname() {
@@ -43,11 +45,10 @@ public class Student implements Serializable {
     }
 
     public boolean isDebtor() {
-        return getAcademicPerfomance().debtsExists();
+        return getAcademicPerfomance().debtsExists() && !getAcademicPerfomance().gradeIsOk();
     }
 
-    public List<Debt> getDebts() {
+    public ArrayList getDebts() {
         return getAcademicPerfomance().getDebts();
     }
-
 }

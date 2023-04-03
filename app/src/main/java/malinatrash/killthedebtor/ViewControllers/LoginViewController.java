@@ -8,25 +8,42 @@ import android.widget.EditText;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Objects;
 
 import malinatrash.killthedebtor.R;
 import malinatrash.killthedebtor.models.Teacher;
-import malinatrash.killthedebtor.services.LoginManager;
+import malinatrash.killthedebtor.models.fabrics.TeacherFabric;
 import malinatrash.killthedebtor.services.StateManager;
 
 public class LoginViewController extends AppCompatActivity {
     EditText loginField;
     EditText passwordField;
     Button signInButton;
+    private DatabaseReference database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).hide();
+        initDatabase();
         setLayout();
         signInButton.setOnClickListener(view -> signInButtonPressed());
+    }
+
+    private void initDatabase() {
+        database = FirebaseDatabase.getInstance().getReference();
+
+//        database.push().setValue(LoginManager.shared.teachers);
+
+        database.push().setValue(TeacherFabric.shared.getTeacherArsh());
+        database.push().setValue(TeacherFabric.shared.getTeacherKatash());
+        database.push().setValue(TeacherFabric.shared.getTeacherBuch());
+        database.push().setValue(TeacherFabric.shared.getTeacherMalan());
+        database.push().setValue(TeacherFabric.shared.getTeacherPetrov());
     }
 
     private void setLayout() {
@@ -37,11 +54,13 @@ public class LoginViewController extends AppCompatActivity {
 
     private void signInButtonPressed() {
         Teacher teacher = getTeacher();
-//        teacher = LoginManager.shared.teachers.get(0);
+        teacher = TeacherFabric.shared.getTeacherBuch();
+
         if (teacher == null) {
             showAlertDialog();
             return;
         }
+
         navigateToDisciplinesList(teacher);
     }
 
@@ -56,7 +75,12 @@ public class LoginViewController extends AppCompatActivity {
     }
 
     private Teacher getTeacher() {
-        return LoginManager.shared.getTeacher(loginField.getText().toString(), passwordField.getText().toString());
+        return null;
+//        return LoginManager.shared.getTeacher(
+//                database,
+//                loginField.getText().toString(),
+//                passwordField.getText().toString()
+//        );
     }
 
     private void clearFields() {
