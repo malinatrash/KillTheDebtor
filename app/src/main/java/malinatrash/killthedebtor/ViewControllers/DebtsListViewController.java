@@ -16,6 +16,7 @@ import java.util.Objects;
 
 import malinatrash.killthedebtor.R;
 import malinatrash.killthedebtor.adapters.DebtAdapter;
+import malinatrash.killthedebtor.models.AcademicPerformance;
 import malinatrash.killthedebtor.models.Debt;
 import malinatrash.killthedebtor.models.Measure;
 import malinatrash.killthedebtor.models.Student;
@@ -23,7 +24,7 @@ import malinatrash.killthedebtor.services.ActivityManager;
 import malinatrash.killthedebtor.services.StateManager;
 
 public class DebtsListViewController extends AppCompatActivity {
-    private final Measure measure = StateManager.shared.getCurrentStudent().getAcademicPerfomance().getMeasure();
+    private Measure measure;
     private Button sendGradeButton;
     private CheckBox isPassedCheckBox;
     private EditText gradeTextField;
@@ -31,6 +32,7 @@ public class DebtsListViewController extends AppCompatActivity {
     private TextView studentName;
     private Student student;
     private List<Debt> debts = new ArrayList<>();
+    private AcademicPerformance academicPerformance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,8 @@ public class DebtsListViewController extends AppCompatActivity {
         setContentView(R.layout.activity_debts_list_view_controller);
         Objects.requireNonNull(getSupportActionBar()).hide();
         getStudent();
+        academicPerformance = StateManager.shared.getAcademicPerformance(student.getAcademicPerformances());
+        measure = academicPerformance.getMeasure();
         debtsList = findViewById(R.id.debtsList);
         DebtAdapter adapter = new DebtAdapter(this, debts);
         debtsList.setAdapter(adapter);
@@ -48,8 +52,8 @@ public class DebtsListViewController extends AppCompatActivity {
     }
 
     private void handleCheckBoxClick() {
-        if (measure.equals(Measure.CREDIT) && student.getAcademicPerfomance().getGrade() != null) {
-            isPassedCheckBox.setChecked((Boolean) student.getAcademicPerfomance().getGrade());
+        if (measure.equals(Measure.CREDIT) && academicPerformance.getGrade() != null) {
+            isPassedCheckBox.setChecked((Boolean) academicPerformance.getGrade().getCredit());
         }
         isPassedCheckBox.setOnClickListener(e -> {
             if (isPassedCheckBox.isChecked()) {
@@ -75,9 +79,9 @@ public class DebtsListViewController extends AppCompatActivity {
         if (measure.equals(Measure.CREDIT)) {
             sendGradeButton.setVisibility(View.GONE);
             gradeTextField.setVisibility(View.GONE);
-            if (student.getAcademicPerfomance().getGrade() == null) {
+            if (academicPerformance.getGrade() == null) {
                 isPassedCheckBox.setText("Не зачтено");
-            } else if (((Boolean) student.getAcademicPerfomance().getGrade())) {
+            } else if (((Boolean) academicPerformance.getGrade().getCredit())) {
                 isPassedCheckBox.setText("Зачтено");
             } else {
                 isPassedCheckBox.setText("Не зачтено");
@@ -104,12 +108,12 @@ public class DebtsListViewController extends AppCompatActivity {
                     int inputGrade = Integer.parseInt(gradeTextField.getText().toString());
                     if (inputGrade >= 1 && inputGrade <= 5) {
                         grade = inputGrade;
-                        student.getAcademicPerfomance().setGrade((grade));
+                        academicPerformance.setGrade((grade));
                     }
                 }
                 break;
             default:
-                student.getAcademicPerfomance().setGrade(isPassedCheckBox.isChecked());
+                academicPerformance.setCredit(isPassedCheckBox.isChecked());
                 break;
         }
     }
@@ -118,6 +122,6 @@ public class DebtsListViewController extends AppCompatActivity {
         student = StateManager.shared.getCurrentStudent();
         studentName = findViewById(R.id.stud);
         studentName.setText(student.getFirstname() + " " + student.getLastname());
-        debts = student.getDebts();
+        debts =  StateManager.shared.getDebts(student.getAcademicPerformances());
     }
 }

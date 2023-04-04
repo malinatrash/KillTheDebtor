@@ -10,6 +10,23 @@ public class Student implements Serializable {
     private String lastname;
     private ArrayList<AcademicPerformance> academicPerformances;
 
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public ArrayList<AcademicPerformance> getAcademicPerformances() {
+        return academicPerformances;
+    }
+
+    public void setAcademicPerformances(ArrayList<AcademicPerformance> academicPerformances) {
+        this.academicPerformances = academicPerformances;
+    }
+
+
     public Student(String firstname, String lastname, ArrayList<AcademicPerformance> academicPerformances) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -23,32 +40,8 @@ public class Student implements Serializable {
         return firstname;
     }
 
-    public AcademicPerformance getAcademicPerfomance() {
-        for (AcademicPerformance academicPerformance : academicPerformances) {
-            if (academicPerformance.getDisciplineTitle().equals(StateManager.shared.getCurrentDiscipline().getTitle())) {
-                return academicPerformance;
-            }
-        }
-        return null;
-    }
-
     public String getLastname() {
         return lastname;
     }
 
-    public int getCountDebts() {
-        return getAcademicPerfomance().getCountDebts();
-    }
-
-    public String getGrade() {
-        return getAcademicPerfomance().getGradeStr();
-    }
-
-    public boolean isDebtor() {
-        return getAcademicPerfomance().debtsExists() && !getAcademicPerfomance().gradeIsOk();
-    }
-
-    public ArrayList getDebts() {
-        return getAcademicPerfomance().getDebts();
-    }
 }

@@ -1,5 +1,7 @@
 package malinatrash.killthedebtor.services;
 
+import java.util.ArrayList;
+
 import malinatrash.killthedebtor.models.AcademicPerformance;
 import malinatrash.killthedebtor.models.Discipline;
 import malinatrash.killthedebtor.models.Group;
@@ -12,7 +14,6 @@ public class StateManager {
     public Discipline currentDiscipline;
     public Group currentGroup;
     public Student currentStudent;
-    public AcademicPerformance currentAcademicPerformance;
 
     StateManager() {
     }
@@ -39,7 +40,6 @@ public class StateManager {
 
     public void setCurrentStudent(Student currentStudent) {
         this.currentStudent = currentStudent;
-        this.currentAcademicPerformance = currentStudent.getAcademicPerfomance();
     }
 
     public Teacher getCurrentTeacher() {
@@ -48,5 +48,41 @@ public class StateManager {
 
     public void setCurrentTeacher(Teacher currentTeacher) {
         this.currentTeacher = currentTeacher;
+    }
+
+    public int getCountDebts(ArrayList<AcademicPerformance> academicPerformances) {
+        return getAcademicPerformance(academicPerformances).getCountDebts();
+    }
+
+    public String getGrade(ArrayList<AcademicPerformance> academicPerformances) {
+        return getAcademicPerformance(academicPerformances).getGradeStr();
+    }
+
+    public boolean isDebtor(ArrayList<AcademicPerformance> academicPerformances) {
+        return getAcademicPerformance(academicPerformances).debtsExists()
+                && !getAcademicPerformance(academicPerformances).gradeIsOk();
+    }
+
+    public ArrayList getDebts(ArrayList<AcademicPerformance> academicPerformances) {
+        return getAcademicPerformance(academicPerformances).getDebts();
+    }
+
+    public AcademicPerformance getAcademicPerformance(ArrayList<AcademicPerformance> academicPerformances) {
+        for (AcademicPerformance academicPerformance : academicPerformances) {
+            if (academicPerformance.getDisciplineTitle().equals(StateManager.shared.getCurrentDiscipline().getTitle())) {
+                return academicPerformance;
+            }
+        }
+        return null;
+    }
+
+    public int getCountDebtors(ArrayList<Student> students) {
+        int count = 0;
+        for (Student student : students) {
+            if (isDebtor(student.getAcademicPerformances())) {
+                count++;
+            }
+        }
+        return count;
     }
 }

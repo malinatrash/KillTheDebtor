@@ -3,7 +3,6 @@ package malinatrash.killthedebtor.models;
 public class Debt {
     private String description;
     private boolean isClosed;
-
     public Debt(boolean isClosed, String description) {
         this.isClosed = isClosed;
         this.description = description;

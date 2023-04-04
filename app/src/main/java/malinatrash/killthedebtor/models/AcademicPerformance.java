@@ -2,17 +2,17 @@ package malinatrash.killthedebtor.models;
 
 import java.util.ArrayList;
 
-public class AcademicPerformance<T> {
+public class AcademicPerformance {
     private Measure measure;
     private ArrayList<Debt> debts;
     private String disciplineTitle;
-    private T grade;
+    private Grade grade;
 
-    public AcademicPerformance(String disciplineTitle, ArrayList<Debt> debts, Measure measure) {
+    public AcademicPerformance(String disciplineTitle, ArrayList<Debt> debts, Measure measure, Grade grade) {
         this.disciplineTitle = disciplineTitle;
         this.debts = debts;
         this.measure = measure;
-        this.grade = null;
+        this.grade = new Grade(measure);
     }
 
     public AcademicPerformance() {
@@ -52,19 +52,26 @@ public class AcademicPerformance<T> {
         this.debts = debts;
     }
 
-    public T getGrade() {
+    public Grade getGrade() {
         return grade;
     }
 
-    public void setGrade(T grade) {
-        this.grade = grade;
+    public void setCredit(Boolean credit) {
+        this.grade.setCredit((credit));
+    }
+
+    public void setGrade(int grade) {
+        this.grade.setGrade(grade);
     }
 
     public String getGradeStr() {
-        if (grade instanceof Integer) {
-            return "Оценка: " + grade;
-        } else if (grade instanceof Boolean) {
-            if ((Boolean) grade) {
+        if (grade.getMeasure().equals(Measure.EXAM)) {
+            if (grade.getGrade() == 0) {
+                return "Нет оценки";
+            }
+            return "Оценка: " + grade.getGrade();
+        } else if (grade.getMeasure().equals(Measure.CREDIT)) {
+            if (grade.getCredit()) {
                 return "Зачтено";
             } else {
                 return "Не зачтено";
@@ -74,11 +81,11 @@ public class AcademicPerformance<T> {
     }
 
     public boolean gradeIsOk() {
-        if (getGrade() instanceof Boolean) {
-            return (Boolean) getGrade();
-        } else if (getGrade() instanceof Integer) {
+        if (getGrade().getMeasure().equals(Measure.CREDIT)) {
+            return getGrade().getCredit();
+        } else if (getGrade().getMeasure().equals(Measure.EXAM)) {
             if (getGrade() != null) {
-                return ((Integer) getGrade()) > 2;
+                return (getGrade().getGrade()) > 2;
             }
         }
         return false;

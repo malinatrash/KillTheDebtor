@@ -6,6 +6,19 @@ import java.util.ArrayList;
 
 public class Discipline implements Serializable {
     private String title;
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setGroups(ArrayList<Group> groups) {
+        this.groups = groups;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
     private ArrayList<Group> groups;
     private String imageURL;
 

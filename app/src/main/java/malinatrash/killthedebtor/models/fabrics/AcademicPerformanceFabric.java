@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import malinatrash.killthedebtor.models.AcademicPerformance;
 import malinatrash.killthedebtor.models.Debt;
+import malinatrash.killthedebtor.models.Grade;
 import malinatrash.killthedebtor.models.Measure;
 
 public class AcademicPerformanceFabric {
@@ -13,7 +14,7 @@ public class AcademicPerformanceFabric {
     public AcademicPerformanceFabric() {
     }
 
-    private AcademicPerformance<Integer> getCSharp() {
+    private AcademicPerformance getCSharp() {
         return new AcademicPerformance(
                 "Технологии программирования",
                 new ArrayList<>(Arrays.asList(
@@ -24,11 +25,12 @@ public class AcademicPerformanceFabric {
                         new Debt(false, "Курсовая: Система частиц")
 
                 )),
-                Measure.EXAM
+                Measure.EXAM,
+                new Grade(Measure.EXAM)
         );
     }
 
-    private AcademicPerformance<Boolean> getDataAnalyse() {
+    private AcademicPerformance getDataAnalyse() {
         return new AcademicPerformance(
                 "Методы анализа данных",
                 new ArrayList<>(Arrays.asList(
@@ -39,11 +41,12 @@ public class AcademicPerformanceFabric {
                         new Debt(false, "Построение деревьев решений")
 
                 )),
-                Measure.CREDIT
+                Measure.CREDIT,
+                new Grade(Measure.CREDIT)
         );
     }
 
-    private AcademicPerformance<Boolean> getOOP() {
+    private AcademicPerformance getOOP() {
         return new AcademicPerformance(
                 "Объектно- ориентированное программирование",
                 new ArrayList<>(Arrays.asList(
@@ -54,11 +57,12 @@ public class AcademicPerformanceFabric {
                         new Debt(false, "ООП в Swing")
 
                 )),
-                Measure.CREDIT
+                Measure.CREDIT,
+                new Grade(Measure.CREDIT)
         );
     }
 
-    private AcademicPerformance<Integer> getBuisnesProcess() {
+    private AcademicPerformance getBuisnesProcess() {
         return new AcademicPerformance(
                 "Анализ бизнес-процессов",
                 new ArrayList<>(Arrays.asList(
@@ -69,11 +73,12 @@ public class AcademicPerformanceFabric {
                         new Debt(false, "Лабораторная работа 5")
 
                 )),
-                Measure.EXAM
+                Measure.EXAM,
+                new Grade(Measure.EXAM)
         );
     }
 
-    private AcademicPerformance<Boolean> getOperationResearch() {
+    private AcademicPerformance getOperationResearch() {
         return new AcademicPerformance(
                 "Исследование операций",
                 new ArrayList<Debt>(Arrays.asList(
@@ -84,11 +89,12 @@ public class AcademicPerformanceFabric {
                         new Debt(false, "Лабораторная работа 5")
 
                 )),
-                Measure.CREDIT
+                Measure.CREDIT,
+                new Grade(Measure.CREDIT)
         );
     }
 
-    private AcademicPerformance<Boolean> getWeb() {
+    private AcademicPerformance getWeb() {
         return new AcademicPerformance(
                 "WEB- Программирование",
                 new ArrayList<Debt>(Arrays.asList(
@@ -99,11 +105,12 @@ public class AcademicPerformanceFabric {
                         new Debt(false, "Production")
 
                 )),
-                Measure.CREDIT
+                Measure.CREDIT,
+                new Grade(Measure.CREDIT)
         );
     }
 
-    private AcademicPerformance<Integer> getModel() {
+    private AcademicPerformance getModel() {
         return new AcademicPerformance(
                 "Моделирование процессов и систем",
                 new ArrayList<Debt>(Arrays.asList(
@@ -114,11 +121,12 @@ public class AcademicPerformanceFabric {
                         new Debt(false, "Планирование эксперимента")
 
                 )),
-                Measure.EXAM
+                Measure.EXAM,
+                new Grade(Measure.EXAM)
         );
     }
 
-    private AcademicPerformance<Integer> getMobile() {
+    private AcademicPerformance getMobile() {
         return new AcademicPerformance(
                 "Разработка мобильный приложений",
                 new ArrayList<Debt>(Arrays.asList(
@@ -129,7 +137,8 @@ public class AcademicPerformanceFabric {
                         new Debt(false, "Кроссплатформенная разработка")
 
                 )),
-                Measure.EXAM
+                Measure.EXAM,
+                new Grade(Measure.EXAM)
         );
     }
 

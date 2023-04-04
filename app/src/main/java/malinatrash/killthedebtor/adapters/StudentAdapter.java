@@ -7,10 +7,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import malinatrash.killthedebtor.R;
+import malinatrash.killthedebtor.models.AcademicPerformance;
 import malinatrash.killthedebtor.models.Student;
+import malinatrash.killthedebtor.services.StateManager;
 
 public class StudentAdapter extends BaseAdapter {
     private final List<Student> list;
@@ -41,9 +44,9 @@ public class StudentAdapter extends BaseAdapter {
         if (view == null) {
             view = layoutInflater.inflate(R.layout.student_item, viewGroup, false);
         }
-
+        ArrayList<AcademicPerformance> academicPerformances = getStudent(position).getAcademicPerformances();
         TextView countDebts = view.findViewById(R.id.countDebts);
-        String count = String.valueOf(getStudent(position).getCountDebts());
+        String count = String.valueOf(StateManager.shared.getCountDebts(academicPerformances));
         countDebts.setText("Долгов: " + count);
 
         TextView groupName = view.findViewById(R.id.studentName);
@@ -51,7 +54,7 @@ public class StudentAdapter extends BaseAdapter {
         groupName.setText(String.format("%s %s", student.getFirstname(), student.getLastname()));
 
         TextView groupCount = view.findViewById(R.id.grade);
-        groupCount.setText(getStudent(position).getGrade());
+        groupCount.setText(StateManager.shared.getGrade(academicPerformances));
 
         return view;
     }

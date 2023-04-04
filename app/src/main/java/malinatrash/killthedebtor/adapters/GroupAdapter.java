@@ -48,7 +48,7 @@ public class GroupAdapter extends BaseAdapter {
         groupName.setText(getGroup(position).getTitle());
 
         TextView groupCount = (TextView) view.findViewById(R.id.debtorsCount);
-        groupCount.setText("Количество задолжников: " + getGroup(position).getCountDebtors());
+        groupCount.setText("Количество задолжников: " + StateManager.shared.getCountDebtors(getGroup(position).getStudents()));
 
         return view;
     }

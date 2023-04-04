@@ -1,5 +1,8 @@
 package malinatrash.killthedebtor.models.fabrics;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import malinatrash.killthedebtor.models.Teacher;
 
 public class TeacherFabric {
@@ -48,6 +51,10 @@ public class TeacherFabric {
             DisciplineFabric.shared.getDisciplinesPetrov()
     );
 
+    public ArrayList<Teacher> teachers = new ArrayList<Teacher>(Arrays.asList(
+            getTeacherPetrov(), getTeacherMalan(), getTeacherKatash(), getTeacherBuch(), getTeacherArsh()
+    ));
+
     TeacherFabric() {
     }
 
@@ -69,5 +76,13 @@ public class TeacherFabric {
 
     public Teacher getTeacherKatash() {
         return katash;
+    }
+
+    public Teacher getArsh() {
+        return arsh;
+    }
+
+    public Teacher getPetrov() {
+        return petrov;
     }
 }
