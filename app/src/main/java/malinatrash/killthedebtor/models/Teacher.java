@@ -10,13 +10,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Teacher implements Serializable {
-    private String login;
-    private String password;
+    private ArrayList<Discipline> disciplines;
     private String firstname;
     private String lastname;
+    private String login;
+    private String password;
     private String thirdname;
-    private ArrayList<Discipline> disciplines;
-    private String id = login;
 
 
     public Teacher(String login, String password, String firstname, String lastname, String thirdname, ArrayList<Discipline> disciplines) {
@@ -32,14 +31,14 @@ public class Teacher implements Serializable {
 
     }
 
-    public Teacher(Teacher teacher) {
-        this.firstname = teacher.getFirstname();
-        this.lastname = teacher.getLastname();
-        this.login = teacher.getLogin();
-        this.password = teacher.getPassword();
-        this.thirdname = teacher.getThirdname();
-        this.disciplines = teacher.getDisciplines();
-    }
+//    public Teacher(Teacher teacher) {
+//        this.firstname = teacher.getFirstname();
+//        this.lastname = teacher.getLastname();
+//        this.login = teacher.getLogin();
+//        this.password = teacher.getPassword();
+//        this.thirdname = teacher.getThirdname();
+//        this.disciplines = teacher.getDisciplines();
+//    }
 
     public ArrayList<Discipline> getDisciplines() {
         return disciplines;
@@ -87,14 +86,6 @@ public class Teacher implements Serializable {
 
     public void setThirdname(String thirdname) {
         this.thirdname = thirdname;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }
 

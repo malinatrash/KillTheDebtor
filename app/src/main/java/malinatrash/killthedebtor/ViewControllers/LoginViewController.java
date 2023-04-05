@@ -32,7 +32,9 @@ public class LoginViewController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).hide();
-        initDatabase();
+        StateManager.shared.updateTeachers();
+//        DatabaseManager.shared.remove();
+//        initDatabase();
         setLayout();
         signInButton.setOnClickListener(view -> signInButtonPressed());
     }

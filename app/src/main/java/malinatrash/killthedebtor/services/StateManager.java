@@ -7,15 +7,25 @@ import malinatrash.killthedebtor.models.Discipline;
 import malinatrash.killthedebtor.models.Group;
 import malinatrash.killthedebtor.models.Student;
 import malinatrash.killthedebtor.models.Teacher;
+import malinatrash.killthedebtor.models.fabrics.TeacherFabric;
 
 public class StateManager {
     public static StateManager shared = new StateManager();
-    public Teacher currentTeacher;
-    public Discipline currentDiscipline;
-    public Group currentGroup;
-    public Student currentStudent;
+    private Teacher currentTeacher;
+    private Discipline currentDiscipline;
+    private Group currentGroup;
+    private Student currentStudent;
+    private ArrayList<Teacher> teachers;
 
     StateManager() {
+    }
+
+    public void setTeachers() {
+        DatabaseManager.shared.getTeachers();
+    }
+
+    public void updateTeachers() {
+        teachers = DatabaseManager.shared.getTeachers();
     }
 
     public Discipline getCurrentDiscipline() {
@@ -84,5 +94,9 @@ public class StateManager {
             }
         }
         return count;
+    }
+
+    public ArrayList<Teacher> getTeachers() {
+        return teachers;
     }
 }

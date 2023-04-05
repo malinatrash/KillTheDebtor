@@ -11,6 +11,10 @@ public class Discipline implements Serializable {
         this.title = title;
     }
 
+    public void setGroupsCount(int groupsCount) {
+        this.groupsCount = groupsCount;
+    }
+
     public void setGroups(ArrayList<Group> groups) {
         this.groups = groups;
     }
@@ -21,6 +25,7 @@ public class Discipline implements Serializable {
 
     private ArrayList<Group> groups;
     private String imageURL;
+    private int groupsCount;
 
     public Discipline(String title, String imageURL, ArrayList<Group> groups) {
         this.title = title;

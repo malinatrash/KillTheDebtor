@@ -13,6 +13,7 @@ import java.util.List;
 import malinatrash.killthedebtor.R;
 import malinatrash.killthedebtor.ViewControllers.StudentsListViewController;
 import malinatrash.killthedebtor.models.Debt;
+import malinatrash.killthedebtor.services.DatabaseManager;
 
 public class DebtAdapter extends BaseAdapter {
     private final List<Debt> list;

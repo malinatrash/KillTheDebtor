@@ -6,13 +6,17 @@ public class AcademicPerformance {
     private Measure measure;
     private ArrayList<Debt> debts;
     private String disciplineTitle;
-    private Grade grade;
+    private Performance grade;
 
-    public AcademicPerformance(String disciplineTitle, ArrayList<Debt> debts, Measure measure, Grade grade) {
+    public AcademicPerformance(String disciplineTitle, ArrayList<Debt> debts, Measure measure) {
         this.disciplineTitle = disciplineTitle;
         this.debts = debts;
         this.measure = measure;
-        this.grade = new Grade(measure);
+        this.grade = new Performance(measure);
+    }
+
+    public void setPerformance(Performance grade) {
+        this.grade = grade;
     }
 
     public AcademicPerformance() {
@@ -52,7 +56,7 @@ public class AcademicPerformance {
         this.debts = debts;
     }
 
-    public Grade getGrade() {
+    public Performance getGrade() {
         return grade;
     }
 
@@ -60,16 +64,16 @@ public class AcademicPerformance {
         this.grade.setCredit((credit));
     }
 
-    public void setGrade(int grade) {
-        this.grade.setGrade(grade);
+    public void setPerformance(int grade) {
+        this.grade.setPerformance(grade);
     }
 
     public String getGradeStr() {
         if (grade.getMeasure().equals(Measure.EXAM)) {
-            if (grade.getGrade() == 0) {
+            if (grade.getPerformance() == 0) {
                 return "Нет оценки";
             }
-            return "Оценка: " + grade.getGrade();
+            return "Оценка: " + grade.getPerformance();
         } else if (grade.getMeasure().equals(Measure.CREDIT)) {
             if (grade.getCredit()) {
                 return "Зачтено";
@@ -85,7 +89,7 @@ public class AcademicPerformance {
             return getGrade().getCredit();
         } else if (getGrade().getMeasure().equals(Measure.EXAM)) {
             if (getGrade() != null) {
-                return (getGrade().getGrade()) > 2;
+                return (getGrade().getPerformance()) > 2;
             }
         }
         return false;

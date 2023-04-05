@@ -1,11 +1,15 @@
 package malinatrash.killthedebtor.models;
 
-public class Grade {
-    int grade;
+public class Performance {
+    int performance;
     boolean credit;
     Measure measure;
 
-    public Grade(Measure measure) {
+    public void setMeasure(Measure measure) {
+        this.measure = measure;
+    }
+
+    public Performance(Measure measure) {
         this.measure = measure;
         if (measure.equals(Measure.CREDIT)) {
             boolean grade;
@@ -14,16 +18,18 @@ public class Grade {
         }
     }
 
+    Performance(){}
+
     public Measure getMeasure() {
         return measure;
     }
 
-    public int getGrade() {
-        return grade;
+    public int getPerformance() {
+        return performance;
     }
 
-    public void setGrade(int grade) {
-        this.grade = grade;
+    public void setPerformance(int performance) {
+        this.performance = performance;
     }
 
     public boolean getCredit() {

@@ -13,6 +13,8 @@ import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import malinatrash.killthedebtor.ViewControllers.LoginViewController;
@@ -24,6 +26,7 @@ public class DatabaseManager {
     public static DatabaseManager shared = new DatabaseManager();
 
     public DatabaseReference database = FirebaseDatabase.getInstance().getReference("teachers");
+    private ArrayList<Teacher> teachers;
 
     public ArrayList<Teacher> getTeachers() {
         ArrayList<Teacher> teachers = new ArrayList<>();
@@ -32,12 +35,13 @@ public class DatabaseManager {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
-                    Teacher t = ((Teacher) ds.child("teachers").getValue());
-                    teachers.add(t);
+                    teachers.add(ds.getValue(Teacher.class));
                 }
             }
+
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
         };
         database.addValueEventListener(valueEventListener);
         return teachers;
@@ -45,7 +49,17 @@ public class DatabaseManager {
 
     public void sendTeachers() {
         TeacherFabric.shared.teachers.forEach(teacher -> {
-            teacher.setId(database.getKey());
+            database.push().setValue(teacher);
+        });
+    }
+
+    public void remove() {
+        database.removeValue();
+    }
+
+    public void updateData() {
+        remove();
+        StateManager.shared.getTeachers().forEach(teacher -> {
             database.push().setValue(teacher);
         });
     }

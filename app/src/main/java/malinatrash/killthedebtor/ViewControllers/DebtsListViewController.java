@@ -21,6 +21,7 @@ import malinatrash.killthedebtor.models.Debt;
 import malinatrash.killthedebtor.models.Measure;
 import malinatrash.killthedebtor.models.Student;
 import malinatrash.killthedebtor.services.ActivityManager;
+import malinatrash.killthedebtor.services.DatabaseManager;
 import malinatrash.killthedebtor.services.StateManager;
 
 public class DebtsListViewController extends AppCompatActivity {
@@ -108,7 +109,7 @@ public class DebtsListViewController extends AppCompatActivity {
                     int inputGrade = Integer.parseInt(gradeTextField.getText().toString());
                     if (inputGrade >= 1 && inputGrade <= 5) {
                         grade = inputGrade;
-                        academicPerformance.setGrade((grade));
+                        academicPerformance.setPerformance((grade));
                     }
                 }
                 break;

@@ -11,15 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import malinatrash.killthedebtor.models.Teacher;
+import malinatrash.killthedebtor.models.fabrics.TeacherFabric;
 
 public class LoginManager {
     public static LoginManager shared = new LoginManager();
-    private Teacher teacher;
 
     public Teacher getTeacher(String login, String password) {
-        List<Teacher> teachers = DatabaseManager.shared.getTeachers();
-        for (Teacher t: teachers) {
-            if (t.getLogin() == login && t.getPassword() == password) {
+        for (Teacher t: StateManager.shared.getTeachers()) {
+            if (t.getLogin().equals(login) && t.getPassword().equals(password)) {
                 return t;
             }
         }

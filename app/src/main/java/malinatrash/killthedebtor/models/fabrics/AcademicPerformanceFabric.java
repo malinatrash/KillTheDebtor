@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 import malinatrash.killthedebtor.models.AcademicPerformance;
 import malinatrash.killthedebtor.models.Debt;
-import malinatrash.killthedebtor.models.Grade;
 import malinatrash.killthedebtor.models.Measure;
 
 public class AcademicPerformanceFabric {
@@ -25,8 +24,7 @@ public class AcademicPerformanceFabric {
                         new Debt(false, "Курсовая: Система частиц")
 
                 )),
-                Measure.EXAM,
-                new Grade(Measure.EXAM)
+                Measure.EXAM
         );
     }
 
@@ -41,8 +39,7 @@ public class AcademicPerformanceFabric {
                         new Debt(false, "Построение деревьев решений")
 
                 )),
-                Measure.CREDIT,
-                new Grade(Measure.CREDIT)
+                Measure.CREDIT
         );
     }
 
@@ -57,8 +54,7 @@ public class AcademicPerformanceFabric {
                         new Debt(false, "ООП в Swing")
 
                 )),
-                Measure.CREDIT,
-                new Grade(Measure.CREDIT)
+                Measure.CREDIT
         );
     }
 
@@ -73,8 +69,7 @@ public class AcademicPerformanceFabric {
                         new Debt(false, "Лабораторная работа 5")
 
                 )),
-                Measure.EXAM,
-                new Grade(Measure.EXAM)
+                Measure.EXAM
         );
     }
 
@@ -89,8 +84,7 @@ public class AcademicPerformanceFabric {
                         new Debt(false, "Лабораторная работа 5")
 
                 )),
-                Measure.CREDIT,
-                new Grade(Measure.CREDIT)
+                Measure.CREDIT
         );
     }
 
@@ -105,8 +99,7 @@ public class AcademicPerformanceFabric {
                         new Debt(false, "Production")
 
                 )),
-                Measure.CREDIT,
-                new Grade(Measure.CREDIT)
+                Measure.CREDIT
         );
     }
 
@@ -121,8 +114,7 @@ public class AcademicPerformanceFabric {
                         new Debt(false, "Планирование эксперимента")
 
                 )),
-                Measure.EXAM,
-                new Grade(Measure.EXAM)
+                Measure.EXAM
         );
     }
 
@@ -137,8 +129,7 @@ public class AcademicPerformanceFabric {
                         new Debt(false, "Кроссплатформенная разработка")
 
                 )),
-                Measure.EXAM,
-                new Grade(Measure.EXAM)
+                Measure.EXAM
         );
     }
 

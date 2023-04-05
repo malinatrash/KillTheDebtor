@@ -15,6 +15,7 @@ import malinatrash.killthedebtor.R;
 import malinatrash.killthedebtor.adapters.StudentAdapter;
 import malinatrash.killthedebtor.models.Group;
 import malinatrash.killthedebtor.models.Student;
+import malinatrash.killthedebtor.services.DatabaseManager;
 import malinatrash.killthedebtor.services.StateManager;
 
 public class StudentsListViewController extends AppCompatActivity {
@@ -41,6 +42,7 @@ public class StudentsListViewController extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         adapter.notifyDataSetChanged();
+        DatabaseManager.shared.updateData();
     }
 
     private void getGroup() {
