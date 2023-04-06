@@ -55,6 +55,7 @@ public class DebtAdapter extends BaseAdapter {
         passed.setChecked(debt.isClosed());
         passed.setOnClickListener(e -> {
             getDebt(position).setClosed(passed.isChecked());
+            DatabaseManager.shared.updateData();
         });
 
         return view;

@@ -19,8 +19,6 @@ import malinatrash.killthedebtor.services.DatabaseManager;
 import malinatrash.killthedebtor.services.StateManager;
 
 public class StudentsListViewController extends AppCompatActivity {
-    private ListView studentsList;
-    private TextView groupName;
     private StudentAdapter adapter;
     private Group group;
     private Student student;
@@ -31,7 +29,7 @@ public class StudentsListViewController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_students_list_view_controller);
         Objects.requireNonNull(getSupportActionBar()).hide();
-        studentsList = findViewById(R.id.debtsList);
+        ListView studentsList = findViewById(R.id.debtsList);
         getGroup();
         adapter = new StudentAdapter(this, students);
         studentsList.setAdapter(adapter);
@@ -42,7 +40,6 @@ public class StudentsListViewController extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         adapter.notifyDataSetChanged();
-        DatabaseManager.shared.updateData();
     }
 
     private void getGroup() {
@@ -68,7 +65,7 @@ public class StudentsListViewController extends AppCompatActivity {
     }
 
     private void setGroupName() {
-        groupName = findViewById(R.id.groupname);
+        TextView groupName = findViewById(R.id.groupname);
         if (groupName != null) groupName.setText(group.getTitle());
     }
 }

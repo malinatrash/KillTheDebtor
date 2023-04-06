@@ -8,17 +8,10 @@ import android.widget.EditText;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 import malinatrash.killthedebtor.R;
 import malinatrash.killthedebtor.models.Teacher;
-import malinatrash.killthedebtor.models.fabrics.TeacherFabric;
 import malinatrash.killthedebtor.services.DatabaseManager;
 import malinatrash.killthedebtor.services.LoginManager;
 import malinatrash.killthedebtor.services.StateManager;
@@ -32,15 +25,9 @@ public class LoginViewController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).hide();
-        StateManager.shared.updateTeachers();
-//        DatabaseManager.shared.remove();
-//        initDatabase();
+        StateManager.shared.setLocalTeachers();
         setLayout();
         signInButton.setOnClickListener(view -> signInButtonPressed());
-    }
-
-    private void initDatabase() {
-        DatabaseManager.shared.sendTeachers();
     }
 
     private void setLayout() {
@@ -51,8 +38,6 @@ public class LoginViewController extends AppCompatActivity {
 
     private void signInButtonPressed() {
         Teacher teacher = getTeacher();
-//         Teacher teacher = TeacherFabric.shared.getTeacherKatash();
-
         if (teacher == null) {
             showAlertDialog();
             return;

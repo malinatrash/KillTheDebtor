@@ -17,7 +17,6 @@ public class Teacher implements Serializable {
     private String password;
     private String thirdname;
 
-
     public Teacher(String login, String password, String firstname, String lastname, String thirdname, ArrayList<Discipline> disciplines) {
         this.login = login;
         this.password = password;
@@ -28,17 +27,7 @@ public class Teacher implements Serializable {
     }
 
     public Teacher() {
-
     }
-
-//    public Teacher(Teacher teacher) {
-//        this.firstname = teacher.getFirstname();
-//        this.lastname = teacher.getLastname();
-//        this.login = teacher.getLogin();
-//        this.password = teacher.getPassword();
-//        this.thirdname = teacher.getThirdname();
-//        this.disciplines = teacher.getDisciplines();
-//    }
 
     public ArrayList<Discipline> getDisciplines() {
         return disciplines;

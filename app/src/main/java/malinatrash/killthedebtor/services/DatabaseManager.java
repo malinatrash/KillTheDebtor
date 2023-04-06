@@ -1,32 +1,23 @@
 package malinatrash.killthedebtor.services;
 
-import android.util.Log;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
 
-import malinatrash.killthedebtor.ViewControllers.LoginViewController;
-import malinatrash.killthedebtor.models.AcademicPerformance;
 import malinatrash.killthedebtor.models.Teacher;
 import malinatrash.killthedebtor.models.fabrics.TeacherFabric;
 
 public class DatabaseManager {
     public static DatabaseManager shared = new DatabaseManager();
-
     public DatabaseReference database = FirebaseDatabase.getInstance().getReference("teachers");
-    private ArrayList<Teacher> teachers;
 
     public ArrayList<Teacher> getTeachers() {
         ArrayList<Teacher> teachers = new ArrayList<>();
@@ -34,6 +25,9 @@ public class DatabaseManager {
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (!snapshot.exists()) {
+                    initDatabase();
+                }
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     teachers.add(ds.getValue(Teacher.class));
                 }
@@ -47,9 +41,11 @@ public class DatabaseManager {
         return teachers;
     }
 
-    public void sendTeachers() {
+    public void initDatabase() {
         TeacherFabric.shared.teachers.forEach(teacher -> {
-            database.push().setValue(teacher);
+            Map<String, Object> updates = new HashMap<>();
+            updates.put(teacher.getLogin(), teacher);
+            database.updateChildren(updates);
         });
     }
 
@@ -58,9 +54,8 @@ public class DatabaseManager {
     }
 
     public void updateData() {
-        remove();
-        StateManager.shared.getTeachers().forEach(teacher -> {
-            database.push().setValue(teacher);
-        });
+        Map<String, Object> updates = new HashMap<>();
+        updates.put(StateManager.shared.getCurrentTeacher().getLogin(), StateManager.shared.getCurrentTeacher());
+        database.updateChildren(updates);
     }
 }

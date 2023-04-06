@@ -11,13 +11,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import malinatrash.killthedebtor.R;
 import malinatrash.killthedebtor.adapters.DebtAdapter;
 import malinatrash.killthedebtor.models.AcademicPerformance;
-import malinatrash.killthedebtor.models.Debt;
 import malinatrash.killthedebtor.models.Measure;
 import malinatrash.killthedebtor.models.Student;
 import malinatrash.killthedebtor.services.ActivityManager;
@@ -30,9 +28,8 @@ public class DebtsListViewController extends AppCompatActivity {
     private CheckBox isPassedCheckBox;
     private EditText gradeTextField;
     private ListView debtsList;
-    private TextView studentName;
     private Student student;
-    private List<Debt> debts = new ArrayList<>();
+    private ArrayList debts = new ArrayList<>();
     private AcademicPerformance academicPerformance;
 
     @Override
@@ -67,9 +64,7 @@ public class DebtsListViewController extends AppCompatActivity {
     }
 
     private void handleTextField() {
-        gradeTextField.setOnFocusChangeListener((v, hasFocus) -> {
-            debtsList.setVisibility(View.GONE);
-        });
+        gradeTextField.setOnFocusChangeListener((v, hasFocus) -> debtsList.setVisibility(View.GONE));
     }
 
     private void setLayout() {
@@ -102,27 +97,26 @@ public class DebtsListViewController extends AppCompatActivity {
     }
 
     private void sendGrade() {
-        switch (measure) {
-            case EXAM:
-                int grade = 0;
-                if (gradeTextField.getText() != null && !gradeTextField.getText().toString().isEmpty()) {
-                    int inputGrade = Integer.parseInt(gradeTextField.getText().toString());
-                    if (inputGrade >= 1 && inputGrade <= 5) {
-                        grade = inputGrade;
-                        academicPerformance.setPerformance((grade));
-                    }
+        if (measure == Measure.EXAM) {
+            int grade;
+            if (gradeTextField.getText() != null && !gradeTextField.getText().toString().isEmpty()) {
+                int inputGrade = Integer.parseInt(gradeTextField.getText().toString());
+                if (inputGrade >= 1 && inputGrade <= 5) {
+                    grade = inputGrade;
+                    academicPerformance.setPerformance((grade));
+                    DatabaseManager.shared.updateData();
                 }
-                break;
-            default:
-                academicPerformance.setCredit(isPassedCheckBox.isChecked());
-                break;
+            }
+        } else {
+            academicPerformance.setCredit(isPassedCheckBox.isChecked());
+            DatabaseManager.shared.updateData();
         }
     }
 
     private void getStudent() {
         student = StateManager.shared.getCurrentStudent();
-        studentName = findViewById(R.id.stud);
-        studentName.setText(student.getFirstname() + " " + student.getLastname());
+        TextView studentName = findViewById(R.id.stud);
+        studentName.setText(String.format("%s %s", student.getFirstname(), student.getLastname()));
         debts =  StateManager.shared.getDebts(student.getAcademicPerformances());
     }
 }
