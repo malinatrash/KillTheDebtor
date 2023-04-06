@@ -13,10 +13,11 @@ import java.util.List;
 import malinatrash.killthedebtor.R;
 import malinatrash.killthedebtor.models.AcademicPerformance;
 import malinatrash.killthedebtor.models.Student;
+import malinatrash.killthedebtor.models.Teacher;
 import malinatrash.killthedebtor.services.StateManager;
 
 public class StudentAdapter extends BaseAdapter {
-    private final List<Student> list;
+    private List<Student> list;
     private final LayoutInflater layoutInflater;
     public StudentAdapter(Context context, List<Student> list) {
         this.list = list;
@@ -40,6 +41,7 @@ public class StudentAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
+
         View view = convertView;
         if (view == null) {
             view = layoutInflater.inflate(R.layout.student_item, viewGroup, false);
@@ -60,6 +62,11 @@ public class StudentAdapter extends BaseAdapter {
     }
     private Student getStudent(int position) {
         return (Student) getItem(position);
+    }
+
+    public void setStudents(List<Student> temp) {
+        list = temp;
+        notifyDataSetChanged();
     }
 }
 
