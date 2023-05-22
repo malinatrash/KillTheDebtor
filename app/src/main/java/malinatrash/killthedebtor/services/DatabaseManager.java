@@ -49,10 +49,6 @@ public class DatabaseManager {
         });
     }
 
-    public void remove() {
-        database.removeValue();
-    }
-
     public void updateData() {
         Map<String, Object> updates = new HashMap<>();
         updates.put(StateManager.shared.getCurrentTeacher().getLogin(), StateManager.shared.getCurrentTeacher());
